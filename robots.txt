@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /test/
+Disallow: /csstricks/
+Disallow: /felix/
+
+Sitemap: http://www.martin-laxenaire.fr/sitemap.xml

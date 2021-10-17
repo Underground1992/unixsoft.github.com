@@ -1,0 +1,719 @@
+@media screen {
+
+	* {
+		margin: 0;
+		padding: 0;
+	}
+
+	body {
+		background: #e7e7e7;
+		font: 16px/1.5 'Ubuntu', Verdana, Serif;
+		overflow: hidden;
+		color: #212121;
+		
+		transition: background-color 1s;
+	}
+
+
+	.wrapper {
+		width: 1370px;
+		margin: 0 auto;
+		overflow: hidden;
+	}
+
+	.flex-container {
+		display: flex;
+	}
+
+	.vertical-align {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.smaller-text {
+		font-size: 75%;	
+	}
+
+	/*** content ***/
+	
+	#content {
+		background: #212121;
+		color: #e7e7e7;
+		height: 100vh;
+		width: 100%;
+		overflow: hidden;
+		
+		background: url('images/loading-background.svg') center bottom no-repeat #212121;
+		
+		background-size: auto 85%;
+	}
+	
+	#loading {
+		margin: auto;
+		text-align: center;
+	}
+	
+	#loading-title {
+		line-height: 100%;
+		font-size: 6em;
+		letter-spacing: -0.1em;
+		font-weight: 700;
+	}
+	
+	#loading-subtitle {
+		font-size: 1.5em;
+		padding-bottom: 4em;
+	}
+	
+	#loading-infos {
+		padding-bottom: 6em;
+	}
+
+	#mountain {
+		position: fixed;
+		z-index: 5;
+
+		color: inherit;
+		text-align: center;
+		background: #e7e7e7;
+		left: 0;
+		
+		margin: auto 0;
+		
+		height: 2px;
+		top: calc(50% - 1px);
+		
+		transition: height 0.8s, top 0.8s;
+	}
+	
+	.mountain-frame #mountain {
+		height: 100vh;
+		top: 0;
+	}
+	
+	/*#mountain::before {
+		content: "";
+		position: absolute;
+		top: -2em;
+		width: 2px;
+		height: 1.5em;
+		background: #212121;
+		left: 50%;
+		margin-left: -1px;
+		z-index: 20;
+		
+		transition: top 0.25s 1s;
+	}*/
+	
+	.mountain-frame #mountain::before {
+		top: 0;
+	}
+
+	#back-to-home {
+		position: relative;
+		z-index: 10;
+		top: 3em;
+		font-size: 0.8em;
+		color: #212121;
+		cursor: pointer;
+	}
+
+	#container {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100vh;
+		z-index: 1;
+		
+		opacity: 0;
+		visibility: hidden;
+		
+		transition: opacity 0.5s;
+	}
+	
+	.mountain-frame #container {
+		opacity: 1;
+		visibility: visible;
+		transition: opacity 0.5s 0.8s;
+	}
+	
+	#container.switching {
+		opacity: 0;
+		transition: opacity 0.5s;
+	}
+
+	/*** mountain menu ***/
+
+	#mountain-menu {
+		left: -4em;
+		position: fixed;
+		top: 0;
+		z-index: 200;
+		transition: left 0.5s;
+		max-height: 100vh;
+	}
+
+	.mountain-frame #mountain-menu {
+		left: 0;
+		position: fixed;
+		top: 0;
+		z-index: 200;
+		transition: left 0.5s;
+		max-height: 100vh;
+	}
+
+	#mountain-menu ul {
+		list-style: none;
+	}
+
+	#mountain-menu ul li {
+		height: calc(100vh / 14);
+		min-height: 30px;
+		position: relative;
+	}
+
+	#mountain-menu ul li .change-mountain {
+		position: absolute;
+		background: #212121;
+		color: #e7e7e7;
+		cursor: pointer;
+		text-transform: uppercase;
+		text-align: center;
+		transition: all 0.25s;
+		width: 200px;
+		padding: 0 4em 0 1em;
+		left: calc(-1em - 200px);
+		height: 100%;
+	}
+
+	#mountain-menu ul li .change-mountain:hover {
+		background: #2a80c9;
+		color: #e7e7e7;
+		left: 0;
+		transition: all 0.5s;
+	}
+
+	#mountain-menu ul li .change-mountain.active {
+		background: #2a80c9;
+		color: #e7e7e7;
+	}
+
+	#mountain-menu ul li .change-mountain::after {
+		content: attr(data-number);
+		display: block;
+		position: absolute;
+		width: 2em;
+		height: 2em;
+		top: 50%;
+		margin-top: -1em;
+		line-height: 1.75em;
+		right: 1em;
+		color: white;
+		text-align: center;
+		border-radius: 50%;
+		border: 2px solid white;
+		box-sizing: border-box;
+	}
+
+	#mountain-menu ul li .change-mountain span {
+		margin: auto;
+		display: inline-block;
+		font-size: 0.75em;
+	}
+
+	/*** mountain infos ***/
+
+	#mountain-info {
+		position: fixed;
+		top: 0;
+		right: calc(-15vw - 4em);
+		text-align: left;
+		z-index: 10;
+	}
+	
+	.mountain-frame #mountain-info {
+		right: 0;
+	}
+	
+	#toggle-mountain-infos {
+		position: fixed;
+		top: 0;
+		right: 0;
+		cursor: pointer;
+		padding: 1em;
+		width: 2em;
+		height: 2em;
+		text-indent: -9999em;
+		z-index: 200;
+		opacity: 0;
+		transition: opacity 0.2s;
+		transition: background-color 0.2s;
+		
+		z-index: 300;
+	}
+	
+	.mountain-frame #toggle-mountain-infos {
+		opacity: 1;
+		transition: opacity 0.4s 0.7s;
+	}
+	
+	#toggle-mountain-infos::before {
+		content: "\2716";
+		position: absolute;
+		z-index: 201;
+		width: 2em;
+		height: 2em;
+		line-height: 1.75em;
+		top: 1em;
+		right: 1em;
+		color: #e7e7e7;
+		text-align: center;
+		border-radius: 50%;
+		border: 2px solid #e7e7e7;
+		text-indent: 0;
+		box-sizing: border-box;
+	}
+	
+	#toggle-mountain-infos.toggled {
+		background: rgba(33, 33, 33, 1);
+		transition: background-color 0.1s 0.7s;
+	}
+	
+	#toggle-mountain-infos.toggled::before {
+		content: "i";
+	}
+	
+	#mountain-info-wrapper {
+		color: #e7e7e7;
+		position: absolute;
+		top: 0;
+		right: calc(-15vw - 4em);
+		bottom: 0;
+		padding: 4em 0 2em 0;
+		/* width: 15vw; */
+		width: calc(15vw + 4em);
+		z-index: 10;
+		height: calc(100vh - 6em);
+		background: rgba(33, 33, 33, 0.8);
+		transition: right 0.7s 0.2s;
+		
+		z-index: 10;
+		
+		flex-direction: column;
+		align-items: stretch;
+	}
+	
+	#mountain-info-wrapper.toggled {
+		right: 0;
+		transition: right 0.7s;
+	}
+	
+	.hide-mountain-infos #mountain-info-wrapper.toggled {
+		right: calc(-15vw - 4em);
+	}
+	
+	#mountain-all-infos {
+		flex-grow: 1;
+		flex-shrink: 1;
+		max-height: calc(100vh - 18em);
+		overflow: hidden;
+		position: relative;
+		padding: 0 2em;
+	}
+
+	.mountain-info-content {
+		opacity: 0;
+		display: none;
+		
+		transition: opacity 0.5s;
+	}
+
+	.mountain-info-content.active {
+		display: block;
+		opacity: 1;
+	}
+
+	.mountain-info-title {
+		font-weight: 400;
+		margin-bottom: 1.5em;
+		color: white;
+	}
+
+	.mountain-info-section {
+		margin-bottom: 2em;
+	}
+	
+	.mountain-info-section p {
+		margin-bottom: 1em;
+	}
+	
+	.toggle-routes {
+		cursor: pointer;
+		color: white;
+		padding-left: 2em;
+		position: relative;
+		line-height: 1.5em;
+		display: inline-block;
+		z-index: 20;
+	}
+	
+	.toggle-routes::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 1.5em;
+		height: 1.5em;
+		box-sizing: border-box;
+		color: inherit;
+		text-align: center;
+		
+		border: 1px solid #e7e7e7;
+	}
+	
+	@-webkit-keyframes rotating /* Safari and Chrome */ {
+		from {
+			-ms-transform: rotate(0deg);
+			-moz-transform: rotate(0deg);
+			-webkit-transform: rotate(0deg);
+			-o-transform: rotate(0deg);
+			transform: rotate(0deg);
+		}
+		to {
+			-ms-transform: rotate(360deg);
+			-moz-transform: rotate(360deg);
+			-webkit-transform: rotate(360deg);
+			-o-transform: rotate(360deg);
+			transform: rotate(360deg);
+		}
+	}
+	@keyframes rotating {
+		from {
+			-ms-transform: rotate(0deg);
+			-moz-transform: rotate(0deg);
+			-webkit-transform: rotate(0deg);
+			-o-transform: rotate(0deg);
+			transform: rotate(0deg);
+		}
+		to {
+			-ms-transform: rotate(360deg);
+			-moz-transform: rotate(360deg);
+			-webkit-transform: rotate(360deg);
+			-o-transform: rotate(360deg);
+			transform: rotate(360deg);
+		}
+	}
+	
+	.toggle-routes.loading::before {
+		border: 0;
+		background: url('images/loading-routes.svg') center center no-repeat;
+		background-size: 100% auto;
+		
+		-webkit-animation: rotating 2s linear infinite;
+		-moz-animation: rotating 2s linear infinite;
+		-ms-animation: rotating 2s linear infinite;
+		-o-animation: rotating 2s linear infinite;
+		animation: rotating 2s linear infinite;
+	}
+	
+	.toggle-routes.active::before {
+		content: "\2714";
+		border: 1px solid #e7e7e7;
+	}
+	
+	.routes-details {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		max-height: 0;
+		overflow: hidden;
+		
+		transition: all 0.4s;
+	}
+	
+	.routes-details.toggled {
+		max-height: 100vh;
+	}
+	
+	.routes-details li {
+		position: relative;
+		text-indent: 1.5em;
+		margin: 0.5em 0;
+	}
+	
+	.routes-details li::before {
+		content: "";
+		position: absolute;
+		width: 1em;
+		height: 1em;
+		border-radius: 50%;
+		top: 0.25em;
+		left: 0;
+		background: #c92a35;
+	}
+	
+	.routes-details li.red::before {
+		background: #c92a35;
+	}
+	
+	.routes-details li.blue::before {
+		background: #2a80c9;
+	}
+	
+	.routes-details li:last-child {
+		margin-bottom: 0;
+	}
+
+	.mountain-info-section a {
+		color: inherit;	
+	}
+
+	.mountain-info-section a:hover {
+		text-decoration: none;
+	}
+
+	.mountain-info-subtitle {
+		font-weight: 400;
+		margin-bottom: 0.75em;
+		color: white;
+	}
+
+	#help-controls {
+		padding: 2em 2em 0 2em;
+		width: calc(100% - 4em);
+		align-self: flex-end;
+	}
+
+	#help-controls p {
+		color: white;
+		font-size: 0.9em;
+	}
+
+	#help-controls p:first-child {
+		margin-bottom: 1em;	
+	}
+
+	#help-controls a {
+		color: inherit;
+	}
+
+	#help-controls a:hover {
+		text-decoration: none;
+	}
+	
+	#help-controls-mobile {
+		display: none;
+	}
+	
+	#help-controls-mobile a {
+		color: white;
+	}
+	
+	/*** about ***/
+	
+	#about {
+		position: fixed;
+		width: 100%;
+		height: 100vh;
+		background: #444;
+		z-index: 800;
+		left: 0;
+		top: 100vh;
+		overflow: hidden;
+		max-height: 100vh;
+		color: #e7e7e7;
+		text-align: left;
+		
+		transition: top 0.5s;
+	}
+	
+	#about.toggled {
+		top: 0;
+	}
+	
+	#about::before {
+		content: "";
+		position: fixed;
+		top: 100vh;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background: #212121;
+		z-index: -1;
+		
+		transition: top 0.3s;
+	}
+	
+	#about.toggled::before {
+		top: 0;
+		
+		transition: top 0.3s 0.3s;
+	}
+	
+	#close-about {
+		position: absolute;
+		top: 2em;
+		right: 2em;
+		z-index: 200;
+		width: 2em;
+		height: 2em;
+		text-indent: -9999em;
+		cursor: pointer;
+	}
+	
+	#close-about::after {
+		content: "\2716";
+		position: absolute;
+		z-index: 201;
+		width: 2em;
+		height: 2em;
+		line-height: 1.75em;
+		top: 0;
+		left: 0;
+		color: #e7e7e7;
+		text-align: center;
+		border-radius: 50%;
+		border: 2px solid #e7e7e7;
+		text-indent: 0;
+		box-sizing: border-box;
+	}
+	
+	#about-content {
+		max-height: 100vh;
+		position: relative;
+		z-index: 20;
+	}
+	
+	#about-content .wrapper {
+		padding: 4em 0;
+	}
+	
+	#about-content h2 {
+		margin-bottom: 1em;
+		color: white;
+		font-size: 1.5em;
+	}
+	
+	#about-content p {
+		margin-bottom: 1em;
+	}
+	
+	#about-content a {
+		color: #e7e7e7;
+	}
+	
+}
+
+/*** RESPONSIVE ***/
+
+@media screen and (max-width: 1400px) {
+	
+	body {
+		font-size: 15px;
+	}
+	
+	.wrapper {
+		width: 980px;
+	}
+	
+	/*** mountain ***/
+	
+	#mountain-info-wrapper {
+		right: calc(-20vw - 4em);
+		width: calc(20vw + 4em);
+	}
+	
+	#mountain-info-wrapper.toggled {
+		right: 0;
+	}
+	
+	.hide-mountain-infos #mountain-info-wrapper.toggled {
+		right: calc(-20vw - 4em);
+	}
+	
+}
+
+@media screen and (max-width: 1000px) {
+	
+	body {
+		font-size: 14px;
+	}
+	
+	.wrapper {
+		width: auto;
+		margin: 0 40px;
+	}
+	
+	/*** mountain ***/
+	
+	#mountain-info-wrapper {
+		right: calc(-25vw - 4em);
+		width: calc(25vw + 4em);
+	}
+	
+	#mountain-info-wrapper.toggled {
+		right: 0;
+	}
+	
+	.hide-mountain-infos #mountain-info-wrapper.toggled {
+		right: calc(-25vw - 4em);
+	}
+	
+}
+
+@media screen and (max-width: 800px) {
+	
+	body {
+		font-size: 13px;
+	}
+	
+	.wrapper {
+		width: auto;
+		margin: 0 20px;
+	}
+	
+	/*** mountain ***/
+	
+	#mountain-info-wrapper {
+		right: calc(-100vw - 12em);
+		width: calc(100vw - 4em);
+		display: block;
+	}
+	
+	#mountain-info-wrapper.toggled {
+		right: 0;
+	}
+	
+	.hide-mountain-infos #mountain-info-wrapper.toggled {
+		right: calc(-100vw - 12em);
+	}
+	
+	#mountain-all-infos {
+		/* max-height: calc(100vh - 4em); */
+		max-height: calc(100vh - 6em);
+		margin-bottom: 2em;
+	}
+	
+	#help-controls {
+		display: none;
+	}
+	
+	#help-controls-mobile {
+		display: block;
+	}
+	
+}
+
+@media screen and (max-width: 600px) {
+	
+	body {
+		font-size: 12px;
+	}
+	
+	.wrapper {
+		width: auto;
+		margin: 0 10px;
+	}
+	
+}

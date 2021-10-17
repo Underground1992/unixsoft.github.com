@@ -1,0 +1,479 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1.0, user-scalable=0" />
+
+	<meta name="robots" content="index, follow" />
+
+
+	<link href="https://fonts.googleapis.com/css?family=Russo+One|Open+Sans" rel="stylesheet">
+
+
+	<!-- TODO FAVICON -->
+
+    <!-- METAS -->
+	<title>The Fall of NeoDubai | A WebGL music experiment</title>
+	<meta name="description" content="As the suburbs crowds are going back home, everything seems quiet in the futuristic metropolis. But tonight, something big is going to happen..." />
+	<link rel="canonical" href="index.html" />
+
+
+	<!-- OPEN GRAPH -->
+	<meta property="og:title" content="The Fall of NeoDubai | A WebGL music experiment" />
+	<meta property="og:type" content="website" />
+	<meta property="og:description" content="As the suburbs crowds are going back home, everything seems quiet in the futuristic metropolis. But tonight, something big is going to happen..." />
+	<meta property="og:url" content="https://www.martin-laxenaire.fr/experiments/fall-of-neo-dubai/" />
+	<meta property="og:image" content="https://www.martin-laxenaire.fr/experiments/fall-of-neo-dubai/martin-laxenaire-experiment-fall-of-neo-dubai.jpg" />
+
+
+	<!-- TWITTER CARD -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:creator" content="@webdesign_ml">
+	<meta name="twitter:title" content="The Fall of NeoDubai | A WebGL music experiment" />
+	<meta name="twitter:description" content="As the suburbs crowds are going back home, everything seems quiet in the futuristic metropolis. But tonight, something big is going to happen..." />
+	<meta name="twitter:image" content="https://www.martin-laxenaire.fr/experiments/fall-of-neo-dubai/martin-laxenaire-experiment-fall-of-neo-dubai.jpg" />
+
+	<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+	<link rel="apple-touch-icon" sizes="180x180" href="../../images/favicons/apple-touch-icon.png" />
+	<link rel="icon" type="image/png" href="../../images/favicons/favicon-32x32.png" sizes="32x32" />
+	<link rel="icon" type="image/png" href="../../images/favicons/favicon-16x16.png" sizes="16x16" />
+	<link rel="manifest" href="../../images/favicons/site.webmanifest" />
+	<link rel="mask-icon" href="../../images/favicons/safari-pinned-tab.svg" color="#313131" />
+	<link rel="shortcut icon" href="../../images/favicons/favicon.ico" />
+	<meta name="msapplication-TileColor" content="#616161" />
+	<meta name="msapplication-config" content="https://www.martin-laxenaire.fr/images/favicons/browserconfig.xml" />
+	<meta name="theme-color" content="#313131" />
+
+	<!--[if IE 8]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+</head>
+
+    <body>
+
+		<script id="building-vs" type="x-shader/x-vertex">
+			// useless ?
+		    varying vec3 vertexPosition;
+		    varying vec3 vertexNormal;
+			varying vec2 vUv;
+
+			uniform vec2 uTextureRepeat;
+
+		    void main() {
+		        vertexPosition = position;
+		        vertexNormal = normalMatrix * normal;
+				vUv = vec2(uv.x * uTextureRepeat.x, uv.y * uTextureRepeat.y);
+
+				vec4 mvPosition = modelViewMatrix * vec4( vertexPosition, 1.0 );
+
+		        gl_Position = projectionMatrix * mvPosition;
+		    }
+		</script>
+
+		<script id="building-fs" type="x-shader/x-fragment">
+			//uniform vec3 uColor;
+
+			// useless ?
+		    varying vec3 vertexPosition;
+		    varying vec3 vertexNormal;
+			varying vec2 vUv;
+
+			uniform sampler2D map;
+			uniform vec3 uWallColor;
+
+			uniform float uTextureShown;
+
+			// fog
+			uniform vec3 fogColor;
+    		uniform float fogNear;
+    		uniform float fogFar;
+
+		    void main() {
+				vec4 buildingTexture = texture2D(map, vUv);
+		        vec4 wallColor = vec4(uWallColor, 1.0);
+
+				vec4 finalColor = mix(wallColor, buildingTexture, buildingTexture.a);
+				if(vertexNormal.y > 0.5) {
+					finalColor = wallColor;
+				}
+
+				if(vertexPosition.y <= uTextureShown) {
+					finalColor = wallColor;
+				}
+
+				gl_FragColor = finalColor;
+
+				// fog
+				#ifdef USE_FOG
+		          	#ifdef USE_LOGDEPTHBUF_EXT
+		              	float depth = gl_FragDepthEXT / gl_FragCoord.w;
+		          	#else
+		              	float depth = gl_FragCoord.z / gl_FragCoord.w;
+		          	#endif
+		          	float fogFactor = smoothstep( fogNear, fogFar, depth );
+		          	gl_FragColor.rgb = mix( gl_FragColor.rgb, fogColor, fogFactor );
+      			#endif
+		    }
+		</script>
+
+
+
+		<script id="glowing-vs" type="x-shader/x-vertex">
+			varying vec2 vUv;
+			varying vec3 vertexPosition;
+			varying vec3 vertexNormal;
+			varying float vGlowIntensity;
+
+		    void main() {
+				vUv = uv;
+				vertexPosition = position;
+				vertexNormal = normalize(normalMatrix * normal);
+				vec3 vNormel =  normalize((modelViewMatrix * vec4( position, 1.0 )).xyz);
+
+				vGlowIntensity = pow( 0.05 - dot(vertexNormal, vNormel), 3.5 );
+
+				vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+
+		        gl_Position = projectionMatrix * mvPosition;
+		    }
+		</script>
+
+		<script id="glowing-fs" type="x-shader/x-fragment">
+			varying vec2 vUv;
+			varying vec3 vertexPosition;
+			varying vec3 vertexNormal;
+			varying float vGlowIntensity;
+
+			uniform vec3 uLightColor;
+			uniform float uGlobalOpacity;
+
+			// fog
+			uniform vec3 fogColor;
+    		uniform float fogNear;
+    		uniform float fogFar;
+
+		    void main() {
+				gl_FragColor = vec4(uLightColor * vGlowIntensity, uGlobalOpacity);
+
+				#ifdef USE_FOG
+		          	#ifdef USE_LOGDEPTHBUF_EXT
+		              	float depth = gl_FragDepthEXT / gl_FragCoord.w;
+		          	#else
+		              	float depth = gl_FragCoord.z / gl_FragCoord.w;
+		          	#endif
+		          	float fogFactor = smoothstep( fogNear, fogFar, depth );
+		          	gl_FragColor.a = (1.0 - fogFactor) * uGlobalOpacity;
+      			#endif
+		    }
+		</script>
+
+
+		<script id="spotlight-vs" type="x-shader/x-vertex">
+			varying vec2 vUv;
+			varying vec3 vertexPosition;
+			varying vec3 vertexNormal;
+
+		    void main() {
+				vUv = uv;
+				vertexPosition = position;
+				vertexNormal = normalMatrix * normal;
+
+				vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+
+		        gl_Position = projectionMatrix * mvPosition;
+		    }
+		</script>
+
+		<script id="spotlight-fs" type="x-shader/x-fragment">
+			varying vec2 vUv;
+			varying vec3 vertexPosition;
+			varying vec3 vertexNormal;
+
+			uniform float uGlobalOpacity;
+
+			// fog
+			uniform vec3 fogColor;
+    		uniform float fogNear;
+    		uniform float fogFar;
+
+		    void main() {
+
+				vec3 finalColor = vec3(1.0, 1.0, 1.0);
+				float opacity = 1.0 - ((50.0 + vertexPosition.y) / 2.0);
+				opacity = abs((vertexPosition.y - 37.5) / 150.0);
+
+				gl_FragColor = vec4(finalColor, opacity * uGlobalOpacity);
+
+				// fog
+				#ifdef USE_FOG
+		          	#ifdef USE_LOGDEPTHBUF_EXT
+		              	float depth = gl_FragDepthEXT / gl_FragCoord.w;
+		          	#else
+		              	float depth = gl_FragCoord.z / gl_FragCoord.w;
+		          	#endif
+		          	float fogFactor = smoothstep( fogNear, fogFar, depth );
+		          	gl_FragColor.rgb = mix( gl_FragColor.rgb, fogColor, fogFactor );
+      			#endif
+		    }
+		</script>
+
+
+		<script id="neon-vs" type="x-shader/x-vertex">
+			// useless ?
+		    varying vec3 vertexPosition;
+			varying vec2 vUv;
+
+		    void main() {
+		        vertexPosition = position;
+				vUv = uv;
+
+				vec4 mvPosition = modelViewMatrix * vec4( vertexPosition, 1.0 );
+
+		        gl_Position = projectionMatrix * mvPosition;
+		    }
+		</script>
+
+		<script id="neon-fs" type="x-shader/x-fragment">
+			// useless ?
+		    varying vec3 vertexPosition;
+			varying vec2 vUv;
+
+			uniform sampler2D map;
+			uniform vec3 uOnColor;
+			uniform vec3 uOffColor;
+			uniform float uIsOn;
+
+			// fog
+			uniform vec3 fogColor;
+    		uniform float fogNear;
+    		uniform float fogFar;
+
+		    void main() {
+
+				vec4 buildingTexture = texture2D(map, vUv);
+				if(buildingTexture.a < 0.3) {
+					discard;
+				}
+
+				vec3 offColor = uOffColor - 0.15;
+				buildingTexture.rgb = mix(uOffColor, uOnColor, uIsOn);
+
+				gl_FragColor = buildingTexture;
+
+				// fog
+				#ifdef USE_FOG
+		          	#ifdef USE_LOGDEPTHBUF_EXT
+		              	float depth = gl_FragDepthEXT / gl_FragCoord.w;
+		          	#else
+		              	float depth = gl_FragCoord.z / gl_FragCoord.w;
+		          	#endif
+		          	float fogFactor = smoothstep( fogNear, fogFar, depth );
+		          	gl_FragColor.rgb = mix( gl_FragColor.rgb, fogColor, fogFactor );
+      			#endif
+		    }
+		</script>
+
+
+		<script id="neon-edges-vs" type="x-shader/x-vertex">
+		    varying vec3 vertexPosition;
+			varying vec3 vertexNormal;
+
+		    void main() {
+		        vertexPosition = position;
+				vertexNormal = normalMatrix * normal;
+
+				vec4 mvPosition = modelViewMatrix * vec4( vertexPosition, 1.0 );
+
+		        gl_Position = projectionMatrix * mvPosition;
+		    }
+		</script>
+
+		<script id="neon-edges-fs" type="x-shader/x-fragment">
+		    varying vec3 vertexPosition;
+			varying vec3 vertexNormal;
+
+			uniform vec3 uLightColor;
+			uniform float uIsOn;
+			uniform float uWidth;
+			uniform float uHeight;
+
+			// fog
+			uniform vec3 fogColor;
+    		uniform float fogNear;
+    		uniform float fogFar;
+
+		    void main() {
+
+				vec4 color = vec4(uLightColor, uIsOn);
+
+				float halfWidth = uWidth / 2.0 - 0.5;
+				float halfHeight = uHeight / 2.0 - 0.5;
+
+				if((abs(vertexPosition.x) < halfWidth || abs(vertexPosition.z) < halfWidth) && abs(vertexPosition.y) < halfHeight) {
+					discard;
+				}
+
+				if(vertexNormal.y > 0.5 && (abs(vertexPosition.x) < halfWidth && abs(vertexPosition.z) < halfWidth)) {
+					discard;
+				}
+
+				gl_FragColor = color;
+
+				// fog
+				#ifdef USE_FOG
+		          	#ifdef USE_LOGDEPTHBUF_EXT
+		              	float depth = gl_FragDepthEXT / gl_FragCoord.w;
+		          	#else
+		              	float depth = gl_FragCoord.z / gl_FragCoord.w;
+		          	#endif
+		          	float fogFactor = smoothstep( fogNear, fogFar, depth );
+		          	gl_FragColor.rgb = mix( gl_FragColor.rgb, fogColor, fogFactor );
+      			#endif
+		    }
+		</script>
+
+
+		<div id="loader" class="flex-wrapper">
+			<span id="loading">Loading</span>
+		</div>
+
+
+        <div id="content">
+			<span id="toggle-audio" title="Mute/unmute sound">mute</span>
+
+			<div id="canvas"></div>
+
+			<div id="chapters">
+				<div id="chapter-title"></div>
+				<div id="chapter-subtitle"></div>
+			</div>
+
+			<div id="start-experiment" class="flex-wrapper">
+				<h1>
+					<span>T</span><span>h</span><span>e</span> <span>F</span><span>a</span><span>l</span><span>l</span> <span>o</span><span>f</span> <span>N</span><span>e</span><span>o</span><span>D</span><span>u</span><span>b</span><span>a</span><span>i</span>
+				</h1>
+
+				<h2>
+					An experimental cyberpunk 3D music clip<br />
+					witnessing the fall of a metropolis...
+				</h2>
+
+				<div id="instructions">
+					<p id="chose-quality">chose quality:</p>
+					<div id="start-button-wrapper" class="flex-wrapper">
+						<span id="medium-quality-button" class="start-button" title="Medium quality">
+							Medium
+						</span>
+						<span id="high-quality-button" class="start-button" title="High quality">
+							High
+						</span>
+					</div>
+				</div>
+
+				<div id="infos-wrapper">
+					Put on your headphones<br />
+					Track: <a href="https://kingdoudou.bandcamp.com/track/badman" title="King Doudou - Badman" target="_blank">Badman</a> by King Doudou
+				</div>
+
+				<div id="more-infos-wrapper">
+					<span id="more-infos"><span>More infos</span></span>
+				</div>
+
+			</div>
+        </div>
+
+		<div id="additionnal-infos">
+			<div id="additionnal-infos-inner">
+				<span id="close-infos"><span>Close X</span></span>
+				<div id="infos-content">
+					<div id="intro">
+						<p id="intro-highlight">
+							As the suburbs crowds are going back home from work, everything seems quiet in the huge megacity of NeoDubai. But tonight, something big is going to happen...
+						</p>
+						<p>
+							The cyberpunk universe and dramatic scenario were inspired by both King Doudou's <a href="https://kingdoudou.bandcamp.com/track/badman" title="King Doudou - Badman" target="_blank">Badman</a> track and Léo Henry's <a href="http://www.leo-henry.com/html/neodubai.html" title="NeoDubai, a novel by Léo Henry" target="_blank">related novel</a> (find the french version below).
+						</p>
+						<p>
+							It was made with three.js and without any other assets than the audio track (no images were used).<br />
+							Code by <a href="https://www.martin-laxenaire.fr/" title="Code by Martin Laxenaire" target="_blank">Martin Laxenaire</a>.
+						</p>
+					</div>
+					<div id="novel">
+						<p>
+							Neo Dubaï, Badr City North
+						</p>
+						<p>
+							La Tour.<br />
+							Cent vingt étages en trois segments distincts reliés par des ascenseurs antigravs. Un cône heptagonal aux façades de verre orange, irisé en altitude par le ponçage des vents du désert. La flèche ajourée finit en bulbe d'or qui étincelle dans la lumière de midi : là où nichent les Anges.<br />
+							L'air oscille, froissé par la canicule.<br />
+							Contre le soleil, une croix se dessine.
+						</p>
+						<p>
+							Au soixantième, les baies de sécurité ouvrent leurs trappes et crachent des files de drones. Les sphères chutent quelques mètres puis se déplient et volent jusqu’à leur position, s'alignent sur le quadrillage : un maillage de détecteurs, d'incapaciteurs et d'explosifs contacts géré par l'IA domotique. Une armure pour la Tour, réactive, presque vivante.<br />
+							En surplomb, la croix grandit très vite, elle se détaille. L'engin autonome arrive de la stratosphère, trop petit pour avoir été repéré plus tôt, et tombe, servomoteurs coupés. Les capteurs s’excitent d’infos. C'est chaud, c'est vivant, c'est humain. C'est armé.<br />
+							Ilhem bloque la chute de son ptéryx et commence à tirer.
+						</p>
+						<p>
+							Les balles fusent dans le prolongement de ses mains, canons orientés par stimuli cérébraux. Les drones surgissent au centre de la visée et tombent avec des flashs blancs, ou bien s’entrechoquent et pètent en crépitant. L'essaim se fend, se redéploye aussitôt, forme une vague pour acculer l’intruse et la submerger. Ilhem plonge, cisaille, vire. Partout où son regard porte, des machines explosent. Le grésil noir des drones se densifie et la force à descendre jusqu'au trentième, la surplombe pour fondre sur elle.<br />
+							Le ptéryx pique raide, stoppe, remonte en chandelle. Ilhem pousse droit dans le mur, paroi continue, des milliers de projectiles hachurent l'air sombre, ses mains la brûlent. Juste avant le contact, son appareil part en tonneaux pour forer dans la masse opaque, comme une mèche, un couloir d'explosions aveuglantes, y tracer un éclair rectiligne qui vient crever contre la Tour.<br />
+							Ilhem se déharnache à peine avant l'impact, roule sur des tapis aux motifs abstraits. Derrière elle, les grandes plaques de verre anti-uv se bombent, plient, puis explosent en millions d’échardes aigües.
+						</p>
+						<p>
+							La guerrière se relève lentement, remet en place une mèche de cheveux échappés de son hijab. Blouson rouge sang, sarouel noir, chaussure de sport, Ilhem avance entre les fontaines de l'open space, derrière lesquelles le personnel a couru s’abriter. Elle tient un PM dans chacune de ses mains fleuries au henné. Les drones pénètrent à sa suite dans le bâtiment, poussés au travers de la baie éventrée par les rafales du khamsin, qui envoient tourbillonner les paperasses de l'étage.<br />
+							Les Iblis de sécurité prennent position dans les cages d’escalier, bloquent les issues, armes au poing. Aucune intrusion dans la Tour ne peut durer plus de quelques secondes.<br />
+							La guerrière poursuit cependant, un vague sourire sur les lèvres. Les androïdes embusqués se reflètent, déformés, dans le verre bleu de ses oculi. La double porte du hall coulisse quand elle approche.<br />
+							Les Iblis se dressent, retiennent leurs tirs. La cible a disparu.
+						</p>
+						<p>
+							Ilhem bascule de l'encoignure et tire deux fois trois balles : six cartons. Elle balance quelque chose tout en se jetant au sol, roule sur le dos, dégomme le capteur de la porte qui se clôt en guillotine latérale. L'avant-garde des drones explose sous le choc tandis que la grenade souffle les Iblis de l'escalier ouest, dont les rafales erratiques carbonisent les mosaïques juste sur les talons de la guerrière. Des étages voisins les renforts accourent déjà.<br />
+							Ilhem se redresse. Un Azrâ-îl vient de surgir.
+						</p>
+						<p>
+							Trois pas d'élan – sol, table basse, épaule d'un robot –, saut périlleux pour esquiver les tirs croisés. Les douilles pleuvent, symétriques, des deux pistolets mitrailleurs, et les impacts pétillent sur la cuirasse du robot colossal, haut comme l’étage, doté de six bras aux extrémités mortelles et d'une queue télescopique.
+							Ilhem retombe, amortit en roulade entre les pattes du monstre dont elle se fait un couvert. Comme les Iblis cessent le feu, la guerrière largue les armes vides, envoie rouler trois grenades et dégaine de leurs fourreaux magnétiques deux carbolames courbes.<br />
+							Flashs. Souffles. La queue d'Azrâ-îl se déploie. Tout se fige.
+						</p>
+						<p>
+							Inspiration profonde.<br />
+							Goutte de sueur.<br />
+							Ilhem se mord la lèvre.<br />
+						</p>
+						<p>
+							Le robot frappe, comme un fouet qui se déplie en claquant. Appui main droite, appui pied gauche. Pirouette d’Ilhem qui s’envole, ouvre les bras. Les poignards tranchent l'air et la queue sectionnée s'abat lourdement en vomissant des étincelles.<br />
+							Au bout du couloir, l'ascenseur d'accès au sommet de l’immeuble s'ouvre lentement.<br />
+							Ilhem se tasse. Esquive des bras bardés de scies, saute, feinte d'un côté, se jette de l'autre pour contourner le monstre, coupant au passage dans les joints d’articulations.<br />
+							Un nouvel escadron d'Iblis remplit le hall de tirs nourris. Les sprinkels s'ouvrent les uns après les autres, l'éclairage s'éteint dans une dernière décharge bleuâtre. Ilhem abandonne l'Azrâ-îl pour sprinter vers la fente lumineuse, celle de l'élévateur qui se referme.
+						</p>
+						<p>
+							Elle accélère encore, zigzague, saute contre un mur et rebondit. Les décharges autour d'elle fracassent les mosaïques blanches, noires et turquoises, dont les abacules sautent des murs avec de minuscules projections de poussière. Ilhem danse au sein d’un tourbillon de dés de verre, de gouttes d'eau, d'étincelles. La fumée, lourde de suie, s’entortille autour d’elle en rubans. Ses mains débitent l’obscurité.<br />
+							Au moment où les portes se ferment, elle se faxe de profil dans la cabine, frôlée par les deux vantaux d’acier dépoli. L'ascenseur s’arrache aussitôt avec une formidable accélération.
+						</p>
+						<p>
+							Par le plancher transparent, Ilhem voit le champ de bataille étrécir sous elle, les explosions étouffées, les employés paniqués, les robots amputés ramper en cercles fous, l'Azrâ-îl prisonnier de commandes contradictoires.
+							Et tout ceci devient lointain, confus comme un film de cinéma visionné sur le trop petit écran d'un téléphone, comme une chanson à demi oubliée, moins réel même que la voix de synthèse qui sonne aux oreilles d’Ilhem alors que son ascension se poursuit, alors qu’elle monte, irrésistiblement, vers la lumière d’or du cent vingtième étage :<br />
+							« Décidément, Madame, vous n’abandonnez pas facilement. Montez donc. Nous serons ravis d’échanger avec vous. »
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-29368338-1"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'UA-29368338-1');
+		</script>
+
+		<!-- main -->
+        <script src="js/build.js" type="text/javascript"></script>
+
+    </body>
+</html>

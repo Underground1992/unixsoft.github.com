@@ -1,0 +1,822 @@
+@media screen {
+
+	* {
+		margin: 0;
+		padding: 0;
+	}
+
+	body {
+		/*background: #003e78;*/
+        color: white;
+		font: 16px/1.2 "Russo one", Arial, Serif;
+
+		letter-spacing: 0.02em;
+
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+
+		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#003e78+0,6b3739+99 */
+		background: #003e78; /* Old browsers */
+		background: -moz-linear-gradient(top, #003e78 0%, #9a6668 99%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top, #003e78 0%,#9a6668 99%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom, #003e78 0%,#9a6668 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#003e78', endColorstr='#9a6668',GradientType=0 ); /* IE6-9 */
+	}
+
+	p {
+		margin: 0 0 1em 0;
+	}
+
+	.flex-wrapper {
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: flexbox;
+		display: -moz-flex;
+		display: -o-flex;
+		display: -webkit-flex;
+		display: -ms-flex;
+		display: flex;
+
+		-moz-flex-wrap: wrap;
+		-o-flex-wrap: wrap;
+		-webkit-flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+	}
+
+
+	/*** scrollbars ***/
+
+	::-webkit-scrollbar {
+        width: 0.9em;
+    }
+
+    ::-webkit-scrollbar-button {
+        display: none;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: white;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #003e78;
+        border: 2px solid white;
+    }
+
+    ::-moz-scrollbar {
+        width: 0.9em;
+    }
+
+    ::-moz-scrollbar-button {
+        display: none;
+    }
+
+    ::-moz-scrollbar-track {
+        background: white;
+    }
+
+    ::-moz-scrollbar-thumb {
+        background: #003e78;
+        border: 2px solid white;
+    }
+
+    ::-ms-scrollbar {
+        width: 0.9em;
+    }
+
+    ::-ms-scrollbar-button {
+        display: none;
+    }
+
+    ::-ms-scrollbar-track {
+        background: white;
+    }
+
+    ::-ms-scrollbar-thumb {
+        background: #003e78;
+        border: 2px solid white;
+    }
+
+	/*** selection ***/
+
+	*::selection {
+		color: white;
+		background: #002b54;
+	}
+
+	*::-moz-selection {
+		color: white;
+		background: #002b54;
+	}
+
+	a {
+		color: inherit;
+	}
+
+	a:hover {
+		text-decoration: none;
+	}
+
+
+	/*** LOADER ***/
+
+	#loader {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 30;
+
+		justify-content: center;
+		align-items: center;
+		align-content: center;
+		flex-direction: column;
+
+		text-align: center;
+
+		transition: opacity 0.5s ease-in-out;
+	}
+
+	.audio-ready #loader {
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	#loading {
+		font-size: 1.25em;
+		text-transform: uppercase;
+	}
+
+
+	/*** CONTENT ***/
+
+	#content {
+		position: relative;
+		width: 100vw;
+		height: 100vh;
+		overflow: hidden;
+
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.audio-ready #content {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	#canvas {
+		width: 100vw;
+        top: 0;
+		bottom: 0;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		opacity: 0;
+
+		transition: opacity 0.25s ease-in-out;
+	}
+
+	.medium-quality #canvas {
+		transform: scale3d(1.25, 1.25, 1);
+	}
+
+	.audio-started #canvas {
+		opacity: 1;
+	}
+
+	.audio-ending #canvas {
+		opacity: 0;
+		transition: opacity 7s ease-in-out;
+	}
+
+
+	#toggle-audio {
+		display: block;
+		position: absolute;
+		bottom: 2em;
+		right: 2em;
+		padding: 0 0.15em;
+		cursor: pointer;
+		z-index: 50;
+		color: white;
+
+		opacity: 0;
+		transition: opacity 1s ease-in-out;
+		transition-delay: 1.25s;
+	}
+
+	.audio-ready #toggle-audio {
+		opacity: 1;
+	}
+
+
+	#toggle-audio::after {
+		content: "";
+		position: absolute;
+		top: calc(50% - 1px);
+		left: 0;
+		right: 0;
+		height: 2px;
+		background: white;
+		transition: right 0.35s ease-in-out;
+	}
+
+	#toggle-audio.audio-muted::after {
+		right: 100%;
+	}
+
+
+	#chapters {
+		position: absolute;
+		right: 0;
+		top: 0;
+		bottom: 0;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		align-content: center;
+
+		left: 0;
+		z-index: 20;
+		text-align: center;
+		pointer-events: none;
+	}
+
+	#chapter-title {
+		font-size: 1.5em;
+
+		opacity: 0;
+		transition: opacity 1.0256s ease-in-out;
+	}
+
+	#chapter-subtitle {
+		font-size: 2em;
+		font-family: "Open Sans", Verdana, sans-serif;
+		margin-top: 0.5em;
+
+		opacity: 0;
+		transition: opacity 1.0256s 1.0256s ease-in-out;
+	}
+
+	#chapters.titles-shown #chapter-title, #chapters.titles-shown #chapter-subtitle {
+		opacity: 1;
+	}
+
+
+	#start-experiment {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 20;
+
+		justify-content: center;
+		align-items: center;
+		align-content: center;
+		flex-direction: column;
+
+		text-align: center;
+	}
+
+	.audio-started #start-experiment {
+		pointer-events: none;
+	}
+
+	#start-experiment::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: -1;
+		opacity: 0;
+
+		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#6b3739+0,003e78+99 */
+		background: #6b3739; /* Old browsers */
+		background: -moz-linear-gradient(top, #9a6668 0%, #003e78 99%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top, #9a6668 0%,#003e78 99%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom, #9a6668 0%,#003e78 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9a6668', endColorstr='#003e78',GradientType=0 ); /* IE6-9 */
+
+		transition: opacity 2s ease-in-out;
+	}
+
+	.audio-ready #start-experiment::after {
+		opacity: 1;
+		transition: opacity 0.75s ease-in-out, top 1s ease-in-out, right 1s ease-in-out, bottom 1s ease-in-out, left 1s ease-in-out;
+	}
+
+	.audio-ready.audio-started #start-experiment::after {
+		opacity: 0;
+	}
+
+	#start-experiment h1  {
+		font-size: 2.5em;
+		font-weight: normal;
+		margin: 0 0 1em 0;
+	}
+
+	#start-experiment h1 span {
+		display: inline-block;
+		transform: translate3D(0, 0.2em, 0);
+		opacity: 0;
+		transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+		transition-delay: 0s;
+	}
+
+	.audio-ready.audio-started #start-experiment h1 span {
+		transform: translate3D(0, 0.2em, 0);
+		opacity: 0;
+	}
+
+	.audio-ready #start-experiment h1 span, .audio-ready.audio-started.audio-ending #start-experiment h1 span {
+		transform: translate3D(0, 0, 0);
+		opacity: 1;
+	}
+
+	#start-experiment h1 span:nth-child(2) {
+		transition-delay: 0.05s
+	}
+
+	#start-experiment h1 span:nth-child(3) {
+		transition-delay: 0.1s
+	}
+
+	#start-experiment h1 span:nth-child(4) {
+		transition-delay: 0.15s
+	}
+
+	#start-experiment h1 span:nth-child(5) {
+		transition-delay: 0.2s
+	}
+
+	#start-experiment h1 span:nth-child(6) {
+		transition-delay: 0.25s
+	}
+
+	#start-experiment h1 span:nth-child(7) {
+		transition-delay: 0.3s
+	}
+
+	#start-experiment h1 span:nth-child(8) {
+		transition-delay: 0.35s
+	}
+
+	#start-experiment h1 span:nth-child(9) {
+		transition-delay: 0.4s
+	}
+
+	#start-experiment h1 span:nth-child(10) {
+		transition-delay: 0.45s
+	}
+
+	#start-experiment h1 span:nth-child(11) {
+		transition-delay: 0.5s
+	}
+
+	#start-experiment h1 span:nth-child(12) {
+		transition-delay: 0.55s
+	}
+
+	#start-experiment h1 span:nth-child(13) {
+		transition-delay: 0.6s
+	}
+
+	#start-experiment h1 span:nth-child(14) {
+		transition-delay: 0.65s
+	}
+
+	#start-experiment h1 span:nth-child(15) {
+		transition-delay: 0.7s
+	}
+
+	#start-experiment h1 span:nth-child(16) {
+		transition-delay: 0.75s
+	}
+
+	#start-experiment h1 span:nth-child(17) {
+		transition-delay: 0.8s
+	}
+
+
+	#start-experiment h2 {
+		font-family: "Open Sans", Verdana, sans-serif;
+		font-size: 1.15em;
+		margin: 0 0 5.5em 0;
+		line-height: 1.4;
+		font-weight: normal;
+		opacity: 0;
+		transition: opacity 1s ease-in-out;
+		transition-delay: 0.75s;
+	}
+
+	.audio-ready.audio-started #start-experiment h2 {
+		opacity: 0;
+		transition: opacity 0.5s ease-in-out;
+		transition-delay: 0s;
+	}
+
+	.audio-ready #start-experiment h2 {
+		opacity: 1;
+	}
+
+	#start-experiment h2 a {
+		color: white;
+	}
+
+
+
+	#instructions {
+		opacity: 0;
+		transition: opacity 1s ease-in-out;
+		transition-delay: 1s;
+	}
+
+	.audio-ready #instructions {
+		opacity: 1;
+	}
+
+	.audio-started.audio-ready #instructions {
+		opacity: 0;
+		transition: opacity 0.5s ease-in-out;
+		transition-delay: 0s;
+	}
+
+	#chose-quality {
+		font-size: 0.9em;
+		margin-bottom: 2.25em;
+		font-family: "Open Sans", Verdana, sans-serif;
+	}
+
+	#start-button-wrapper {
+		justify-content: center;
+		align-items: center;
+		align-content: center;
+	}
+
+	.start-button {
+		display: inline-block;
+		border: 1px solid white;
+		color: white;
+		background: transparent;
+		padding: 0.675em 1.5em;
+		font-size: 1.125em;
+		text-transform: uppercase;
+		cursor: pointer;
+		margin: 0 5em;
+
+		-moz-box-shadow: 0px 0px 0px 0px #ffffff;
+		-webkit-box-shadow: 0px 0px 0px 0px #ffffff;
+		-o-box-shadow: 0px 0px 0px 0px #ffffff;
+		box-shadow: 0px 0px 0px 0px #ffffff;
+		filter:progid:DXImageTransform.Microsoft.Shadow(color=#ffffff, Direction=NaN, Strength=15);
+
+		transition: background 0.3s ease-in-out, color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+	}
+
+	.start-button:hover {
+		color: #003e78;
+		background: white;
+
+		-moz-box-shadow: 0px 0px 10px 2px #ffffff;
+		-webkit-box-shadow: 0px 0px 10px 2px #ffffff;
+		-o-box-shadow: 0px 0px 10px 2px #ffffff;
+		box-shadow: 0px 0px 10px 2px #ffffff;
+		filter:progid:DXImageTransform.Microsoft.Shadow(color=#ffffff, Direction=NaN, Strength=15);
+	}
+
+
+
+	#infos-wrapper {
+		margin: 5em 0 0 0;
+		opacity: 0;
+		transition: opacity 0.75s ease-in-out;
+		transition-delay: 1.05s;
+		font-family: "Open Sans", Verdana, sans-serif;
+	}
+
+	.audio-ready #infos-wrapper {
+		opacity: 1;
+	}
+
+	.audio-started.audio-ready #infos-wrapper {
+		opacity: 0;
+		transition: opacity 0.5s ease-in-out;
+		transition-delay: 0s;
+	}
+
+
+	#more-infos-wrapper {
+		opacity: 0;
+		transition: opacity 0.25s ease-in-out;
+		transition-delay: 1.25s;
+		margin: 2em 0 0 0;
+		text-transform: uppercase;
+	}
+
+	.audio-ready #more-infos-wrapper {
+		opacity: 1;
+	}
+
+	.audio-started.audio-ready #more-infos-wrapper {
+		opacity: 0;
+		transition: opacity 0.5s ease-in-out;
+		transition-delay: 0s;
+	}
+
+	#more-infos {
+		cursor: pointer;
+		display: inline-block;
+		padding: 0.5em 0.75em;
+		position: relative;
+	}
+
+
+	#more-infos span {
+		position: relative;
+		display: inline-block;
+		z-index: 5;
+		transition: color 0.2s 0.1s ease-in-out, opacity 0.01s 1.8s;
+		opacity: 0;
+	}
+
+	.audio-ready #more-infos span {
+		opacity: 1;
+	}
+
+	#more-infos:hover span {
+		color: #003e78;
+	}
+
+	@keyframes moreAfterInitAnim {
+
+		0% {
+			top: 0;
+			bottom: 100%;
+		}
+
+		50% {
+			top: 0;
+			bottom: 0;
+		}
+
+		100% {
+			top: 100%;
+			bottom: 0;
+		}
+
+	}
+
+	#more-infos::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 100%;
+		left: 0;
+		z-index: 2;
+		background: white;
+		display: block;
+
+		transition: top 0.3s ease-in-out;
+	}
+
+	.audio-ready #more-infos::after {
+		top: 100%;
+		bottom: 0;
+
+		animation-duration: 0.6s;
+		animation-name: moreAfterInitAnim;
+		animation-delay: 1.5s;
+	}
+
+	.audio-ready #more-infos:hover::after {
+		top: 0;
+	}
+
+
+
+	#additionnal-infos {
+		position: absolute;
+		top: 0;
+		right: 0;
+		height: 100vh;
+		left: 0;
+		background: #003e78;
+		z-index: 100;
+
+		overflow: auto;
+
+		opacity: 0;
+		display: none;
+		pointer-events: none;
+
+		transform: translate3D(0, 0.75em, 0);
+
+		transition: opacity 0.75s ease-in-out, transform 0.75s ease-in-out;
+	}
+
+	.audio-ready #additionnal-infos {
+		display: block;
+	}
+
+	.infos-toggled #additionnal-infos {
+		transform: translate3D(0, 0, 0);
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	#additionnal-infos-inner {
+		margin: 4em auto;
+		padding: 3em 0 1.5em 0;
+		width: 75%;
+		max-width: 980px;
+		position: relative;
+		font-family: "Open Sans", Verdana, sans-serif;
+		line-height: 1.4;
+	}
+
+	#additionnal-infos-inner a {
+		color: inherit;
+	}
+
+	#additionnal-infos-inner a:hover {
+		text-decoration: none;
+	}
+
+	#close-infos {
+		position: absolute;
+		top: 0;
+		right: 0;
+		display: inline-block;
+		cursor: pointer;
+		text-transform: uppercase;
+		font-family: "Russo one", Arial, serif;
+		padding: 0.5em 0.75em;
+		transition: color 0.2s 0.1s ease-in-out;
+	}
+
+	#close-infos span {
+		position: relative;
+		z-index: 5;
+	}
+
+	#close-infos::after {
+		content: "";
+		position: absolute;
+		top: 100%;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 2;
+		background: white;
+		display: block;
+
+		transition: top 0.3s ease-in-out;
+	}
+
+	#close-infos:hover {
+		color: #003e78;
+	}
+
+	#close-infos:hover::after {
+		top: 0;
+	}
+
+	#intro-highlight {
+		font-size: 1.25em;
+		margin-bottom: 1.5em;
+		font-family: "Russo one", Arial, serif;
+	}
+
+	#novel {
+		margin: 3em auto 0 auto;
+		max-width: 640px;
+		padding-top: 3em;
+		font-size: 0.9em;
+		position: relative;
+	}
+
+	#novel::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		right: 20%;
+		left: 20%;
+		height: 2px;
+		background: white;
+	}
+
+
+} /* END screen media */
+
+/*** RESPONSIVE ***/
+
+@media screen and (orientation: portrait) {
+
+	#start-button-wrapper {
+		flex-direction: column;
+	}
+
+	.start-button {
+		margin: 0.75em 0;
+	}
+
+}
+
+@media screen and (max-width: 980px) {
+
+	body {
+		font-size: 14px;
+	}
+
+	#start-experiment h1 {
+		font-size: 2em;
+		margin-bottom: 0.5em;
+	}
+
+	#start-experiment h2 {
+		font-size: 1.1em;
+		margin-bottom: 4em;
+	}
+
+	#infos-wrapper {
+		margin-top: 3.5em;
+	}
+
+	#chapter-title {
+		font-size: 1.375em;
+	}
+
+	#chapter-subtitle {
+		font-size: 1.5em;
+	}
+
+
+	#toggle-audio {
+		right: 1.5em;
+		bottom: 1.5em;
+	}
+
+
+}
+
+@media screen and (max-width: 720px) {
+
+	#start-experiment h1 {
+		font-size: 1.75em;
+	}
+
+	#start-experiment h2 {
+		margin: 0 0 3.5em 0;
+	}
+
+	#chose-quality {
+		margin-bottom: 1em;
+	}
+
+	#infos-wrapper {
+		margin: 3em 0 0 0;
+	}
+
+	#more-infos-wrapper {
+		margin: 1em 0 0 0;
+	}
+
+	#additionnal-infos-inner {
+		width: calc(100% - 4em);
+	}
+
+	#chapter-title {
+		font-size: 1.25em;
+	}
+
+	#chapter-subtitle {
+		font-size: 1.5em;
+	}
+
+	#toggle-audio {
+		right: 1.25em;
+		bottom: 1.25em;
+	}
+
+}
+
+@media screen and (max-width: 480px) {
+
+	#additionnal-infos-inner {
+		width: calc(100% - 2em);
+	}
+
+}

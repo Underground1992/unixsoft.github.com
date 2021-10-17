@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="google-site-verification" content="xBP9aZPk8-swo29l1OLr7q340lknScTzqQLhTw70PYw" />
+
+    <!-- fonts -->
+    <link rel="preload" as="font" href="https://www.martin-laxenaire.fr/MonumentExtended-Regular.SFFAV6VO.woff2" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" as="font" href="https://www.martin-laxenaire.fr/MonumentExtended-UltraBold.V3YJPPWI.woff2" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" as="font" href="https://www.martin-laxenaire.fr/Swiss-721-BT-Regular.M6K6643H.woff2" type="font/woff2" crossorigin="anonymous">
+
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="https://www.martin-laxenaire.fr/main.css" type="text/css">
+
+    <!-- favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="images/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="images/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="images/favicons/site.webmanifest">
+    <link rel="mask-icon" href="images/favicons/safari-pinned-tab.svg" color="#0505af">
+    <link rel="shortcut icon" href="images/favicons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#0505af">
+    <meta name="msapplication-config" content="https://www.martin-laxenaire.fr/images/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- SEO -->
+    <title>Totaal Rez website case study | Martin Laxenaire's portfolio</title>
+    <meta name="description" content="Case study of Totaal Rez's website by freelance front-end creative developer Martin Laxenaire." />
+    <link rel="canonical" href="totaal-rez" />
+
+    <!-- facebook og -->
+    <meta property="og:url" content="https://www.martin-laxenaire.fr/totaal-rez" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Totaal Rez website case study | Martin Laxenaire's portfolio" />
+    <meta property="og:description" content="Case study of Totaal Rez's website by freelance front-end creative developer Martin Laxenaire." />
+    <meta property="og:image" content="https://www.martin-laxenaire.fr/images/martin-laxenaire-socials.jpg" />
+    <meta property="og:image:width" content="960" />
+    <meta property="og:image:height" content="640" />
+
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@webdesign_ml">
+    <meta name="twitter:creator" content="@webdesign_ml">
+    <meta name="twitter:title" content="Totaal Rez website case study | Martin Laxenaire's portfolio" />
+    <meta name="twitter:description" content="Case study of Totaal Rez's website by freelance front-end creative developer Martin Laxenaire." />
+    <meta name="twitter:image" content="https://www.martin-laxenaire.fr/images/martin-laxenaire-socials.jpg" />
+</head>
+
+<body class="no-motion">
+<div id="canvas"></div>
+<div id="ripples"></div>
+<div id="loader" class="shown"></div>
+<script type="text/javascript">
+    document.getElementById("loader").innerText = "Loading";
+    document.body.classList.remove("no-motion");
+</script>
+
+<header id="header">
+    <div id="header-left" class="header-col">
+        <a href="https://www.martin-laxenaire.fr/" id="home-link" class="header-plane header-link main-title-text scroll-trigger" title="Back to home">Martin Laxenaire</a>
+    </div>
+
+    <div id="header-center" class="header-col">
+        <span class="header-plane main-title-text scroll-trigger">Portfolio@21</span>
+    </div>
+
+    <div id="header-right" class="header-col">
+        <a href="about" id="about-link" class="header-plane header-link main-title-text scroll-trigger" title="About Martin Laxenaire">About</a>
+    </div>
+</header>
+
+<main id="page">
+    <div id="content" data-namespace="single-project">
+
+        <section id="single-project-header">
+
+            <div id="page-heading">
+                <h1 id="site-title" class="single-project-title">
+                    <span class="site-title-line">
+                        <span class="main-title-text text-plane scroll-trigger">
+                            Totaal
+                        </span>
+                    </span>
+                    <span class="site-title-line">
+                        <span class="main-title-text text-plane scroll-trigger">
+                            Rez
+                        </span>
+                    </span>
+                </h1>
+
+                <div id="single-project-cover">
+                    <div class="media-wrapper">
+                        <div class="plane single-project-cover-plane scroll-trigger">
+                            <img src="https://www.martin-laxenaire.fr/images/martin-laxenaire-totaal-rez.jpg" width="1280" height="720" title="Totaal Rez project cover" data-sampler="planeTexture" crossorigin="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="single-project-intro">
+
+            <h2 class="section-title">
+                <span class="main-title-text text-plane scroll-trigger">Booking agency website</span>
+            </h2>
+
+            <div id="single-project-main-desc" class="main-desc">
+                <div class="text-plane scroll-trigger">
+                    A clean website for a local music promoter with upcoming events and past shows galleries back-end management, smooth scroll-triggered animations and subtle SVG interactions.
+                </div>
+            </div>
+
+            <div id="single-project-infos" class="secondary-desc">
+
+                <p class="single-project-more-text text-plane text-plane-has-link scroll-trigger">
+                    In collaboration with <a href="http://www.antoninhorquin.fr/" class="out" target="_blank" rel="noopener noreferrer" title="Antonin Horquin">Antonin Horquin</a><br />
+                    Project involved: SVG animations with Raphael.js, Wordpress with AJAX navigation and lazy loading, custom event calendar.
+                </p>
+
+                <p class="single-project-more-text text-plane text-plane-has-link scroll-trigger">
+                    <a href="https://www.totaalrez.com/" title="Totaal Rez's website" class="out" target="_blank" rel="noopener noreferrer" >
+                        Visit website
+                    </a>
+                </p>
+
+            </div>
+
+        </section>
+
+        <section id="single-project-content">
+
+            <div class="secondary-desc">
+                <h2 class="single-project-subtitle">
+                    <span class="main-title-text text-plane scroll-trigger">Scroll based</span>
+                    <span class="main-title-text text-plane scroll-trigger">and SVG</span>
+                    <span class="main-title-text text-plane scroll-trigger">animations</span>
+                </h2>
+
+                <p class="text-plane scroll-trigger">
+                    Most of the work on this website concerned back-end administration: I had to provide an easy way to handle a booking calendar, past events galleries, news...
+                </p>
+
+                <p class="text-plane scroll-trigger">
+                    To spice it up, I've added smooth scroll-triggered effects and propagating sound waves SVG animations powered by Raphael.js that appears on click as well as randomly.
+                </p>
+            </div>
+
+            <div id="single-project-main-video">
+                <div class="media-wrapper">
+                    <div class="video-plane scroll-trigger">
+                        <img src="images/martin-laxenaire-totaal-rez-home.jpg" width="1280" height="720" alt="Totaal Rez website homepage" data-video="videos/martin-laxenaire-totaal-rez-navigation.mp4" data-video-poster="images/martin-laxenaire-totaal-rez-video-cover.jpg" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="secondary-desc">
+                <h2 class="single-project-subtitle">
+                    <span class="main-title-text text-plane scroll-trigger">Super fast</span>
+                    <span class="main-title-text text-plane scroll-trigger">loading times</span>
+                </h2>
+
+                <p class="text-plane scroll-trigger">
+                    Because Totaal Rez had a lot of content to display on the site I also had to work on front-end optimizations like AJAX loading and filters. It allowed faster page loading times and therefore improved the usability.
+                </p>
+
+
+            </div>
+
+            <div class="single-project-featured-thumb">
+                <div class="media-wrapper">
+                    <div class="plane scroll-trigger">
+                        <img src="images/martin-laxenaire-totaal-rez-medias-page.jpg" width="1280" height="720" title="Totaal Rez medias page screenshot" data-sampler="planeTexture" crossorigin="" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="single-project-featured-thumb">
+                <div class="media-wrapper">
+                    <div class="plane scroll-trigger">
+                        <img src="images/martin-laxenaire-totaal-rez-highlo-page.jpg" width="1280" height="720" title="Totaal Rez High-Lo page screenshot" data-sampler="planeTexture" crossorigin="" />
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="single-project-navigation">
+
+            <div class="single-project-navigation-hr hr-plane scroll-trigger"></div>
+
+            <a href="mirage-festival-2020" title="Mirage Festival 2020 website's case study" id="single-project-navigation-link">
+
+                <div id="single-project-navigation-titles">
+                    <h2>
+                        <span class="main-title-text text-plane scroll-trigger">
+                            Next
+                        </span>
+                    </h2>
+
+                    <h3>
+                        <span class="main-title-text text-plane scroll-trigger" data-stagger="400">
+                            Mirage Festival ’20
+                        </span>
+                    </h3>
+                </div>
+
+                <div id="single-project-navigation-thumb">
+                    <div class="media-wrapper">
+                        <div class="plane project-plane scroll-trigger" data-min-opacity="0.8">
+                            <img src="https://www.martin-laxenaire.fr/images/martin-laxenaire-mirage-festival-2020.jpg" width="1280" height="720" alt="Mirage Festival 2020 case study cover" data-sampler="planeTexture" crossorigin="" />
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <div class="single-project-navigation-hr hr-plane scroll-trigger"></div>
+
+        </section>
+
+
+        <footer id="footer">
+
+            <div id="footer-contact-credits">
+                <div class="footer-col">
+                    <div class="contact-links-list">
+                        <a href="https://twitter.com/webdesign_ml" target="_blank" rel="noopener noreferrer" class="out main-title-text text-plane text-plane-is-link scroll-trigger" title="Martin Laxenaire twitter profile">Twitter</a><br />
+                        <a href="https://github.com/martinlaxenaire" class="out main-title-text text-plane text-plane-is-link scroll-trigger" target="_blank" rel="noopener noreferrer" title="Martin Laxenaire GitHub profile">GitHub</a><br />
+                        <a href="https://codepen.io/martinlaxenaire" target="_blank" rel="noopener noreferrer" class="out main-title-text text-plane text-plane-is-link scroll-trigger" title="Martin Laxenaire CodePen profile">CodePen</a><br />
+                        <a href="https://dribbble.com/martinlaxenaire" target="_blank" rel="noopener noreferrer" class="out main-title-text text-plane text-plane-is-link scroll-trigger" title="Martin Laxenaire Dribbble profile">Dribbble</a><br />
+                    </div>
+
+                    <div class="contact-links-list">
+                        <a href="mailto:hello@martin-laxenaire.fr" class="out main-title-text text-plane text-plane-is-link scroll-trigger" title="Send me an email">hello@martin-laxenaire.fr</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <div class="fonts-credits">
+                        <div class="text-plane text-plane-has-link scroll-trigger">
+                            Monument Extended<br />
+                            by <a href="https://pangrampangram.com/" target="_blank" rel="noopener noreferrer" class="out" title="Pangram Pangram foundry">Pangram Pangram</a>
+                        </div>
+
+                    </div>
+
+                    <div class="fonts-credits">
+                        <div class="text-plane scroll-trigger">
+                            Swiss 721 BT<br />
+                            by Max Miedinger, Bitstream 1982
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-col footer-end-col">
+                    <div class="text-plane text-plane-has-link scroll-trigger">
+                        Design<br />
+                        by <a href="https://rubxkub.com/" target="_blank" rel="noopener noreferrer" class="out" title="Rubxkub - Art Direction">Gilles Tossoukpé</a>
+                    </div>
+
+                    <button id="scroll-to-top" class="main-title-text text-plane scroll-trigger">
+                        Back to top
+                    </button>
+
+                </div>
+            </div>
+
+            <h3 id="footer-title" class="main-title">
+                <span class="main-title-text text-plane scroll-trigger">Get</span>
+                <span class="main-title-text text-plane scroll-trigger">in</span>
+                <span class="main-title-text text-plane scroll-trigger">touch</span>
+            </h3>
+
+        </footer>
+
+    </div>
+</main>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-29368338-1"></script>
+<script src="https://www.martin-laxenaire.fr/js/main.js" type="text/javascript"></script>
+
+</body>
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="google-site-verification" content="xBP9aZPk8-swo29l1OLr7q340lknScTzqQLhTw70PYw" />
+
+    <!-- fonts -->
+    <link rel="preload" as="font" href="https://www.martin-laxenaire.fr/MonumentExtended-Regular.SFFAV6VO.woff2" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" as="font" href="https://www.martin-laxenaire.fr/MonumentExtended-UltraBold.V3YJPPWI.woff2" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" as="font" href="https://www.martin-laxenaire.fr/Swiss-721-BT-Regular.M6K6643H.woff2" type="font/woff2" crossorigin="anonymous">
+
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="https://www.martin-laxenaire.fr/main.css" type="text/css">
+
+    <!-- favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="images/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="images/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="images/favicons/site.webmanifest">
+    <link rel="mask-icon" href="images/favicons/safari-pinned-tab.svg" color="#0505af">
+    <link rel="shortcut icon" href="images/favicons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#0505af">
+    <meta name="msapplication-config" content="https://www.martin-laxenaire.fr/images/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- SEO -->
+    <title>Mirage Festival 2019 website case study | Martin Laxenaire's portfolio</title>
+    <meta name="description" content="Case study of Mirage Festival 2019's website by freelance front-end creative developer Martin Laxenaire." />
+    <link rel="canonical" href="mirage-festival-2019" />
+
+    <!-- facebook og -->
+    <meta property="og:url" content="https://www.martin-laxenaire.fr/mirage-festival-2019" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Mirage Festival 2019 website case study | Martin Laxenaire's portfolio" />
+    <meta property="og:description" content="Case study of Mirage Festival 2019's website by freelance front-end creative developer Martin Laxenaire." />
+    <meta property="og:image" content="https://www.martin-laxenaire.fr/images/martin-laxenaire-socials.jpg" />
+    <meta property="og:image:width" content="960" />
+    <meta property="og:image:height" content="640" />
+
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@webdesign_ml">
+    <meta name="twitter:creator" content="@webdesign_ml">
+    <meta name="twitter:title" content="Mirage Festival 2019 website case study | Martin Laxenaire's portfolio" />
+    <meta name="twitter:description" content="Case study of Mirage Festival 2019's website by freelance front-end creative developer Martin Laxenaire." />
+    <meta name="twitter:image" content="https://www.martin-laxenaire.fr/images/martin-laxenaire-socials.jpg" />
+</head>
+
+<body class="no-motion">
+<div id="canvas"></div>
+<div id="ripples"></div>
+<div id="loader" class="shown"></div>
+<script type="text/javascript">
+    document.getElementById("loader").innerText = "Loading";
+    document.body.classList.remove("no-motion");
+</script>
+
+<header id="header">
+    <div id="header-left" class="header-col">
+        <a href="https://www.martin-laxenaire.fr/" id="home-link" class="header-plane header-link main-title-text scroll-trigger" title="Back to home">Martin Laxenaire</a>
+    </div>
+
+    <div id="header-center" class="header-col">
+        <span class="header-plane main-title-text scroll-trigger">Portfolio@21</span>
+    </div>
+
+    <div id="header-right" class="header-col">
+        <a href="about" id="about-link" class="header-plane header-link main-title-text scroll-trigger" title="About Martin Laxenaire">About</a>
+    </div>
+</header>
+
+<main id="page">
+    <div id="content" data-namespace="single-project">
+
+        <section id="single-project-header">
+
+            <div id="page-heading">
+                <h1 id="site-title" class="single-project-title">
+                    <span class="site-title-line">
+                        <span class="main-title-text text-plane scroll-trigger">
+                            Mirage
+                        </span>
+                    </span>
+                    <span class="site-title-line">
+                        <span class="main-title-text text-plane scroll-trigger">
+                            Festival ’19
+                        </span>
+                    </span>
+                </h1>
+
+                <div id="single-project-cover">
+                    <div class="media-wrapper">
+                        <div class="plane single-project-cover-plane scroll-trigger">
+                            <img src="https://www.martin-laxenaire.fr/images/martin-laxenaire-mirage-festival-2019.jpg" width="1280" height="720" title="Mirage Festival 2019 project cover" data-sampler="planeTexture" crossorigin="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="single-project-intro">
+
+            <h2 class="section-title">
+                <span class="main-title-text text-plane scroll-trigger">Event website</span>
+            </h2>
+
+            <div id="single-project-main-desc" class="main-desc">
+                <div class="text-plane scroll-trigger">
+                    We once again teamed with Cécile + Roger to deliver an interactive website full of turbulences, swirls and displacement effects highlighting Mirage Festival's 9th edition's "Turmoil" thematic.
+                </div>
+            </div>
+
+            <div id="single-project-infos" class="secondary-desc">
+
+                <p class="single-project-more-text text-plane text-plane-has-link scroll-trigger">
+                    In collaboration with <a href="http://cecile-roger.com/" class="out" target="_blank" rel="noopener noreferrer" title="Cécile + Roger">Cécile + Roger</a><br />
+                    Project involved: WebGL with three.js and curtains.js, GLSL, Wordpress with custom AJAX navigation.
+                </p>
+
+                <p class="single-project-more-text text-plane text-plane-has-link scroll-trigger">
+                    <a href="https://www.miragefestival.com/2019/" title="Mirage Festival 2019's website" class="out" target="_blank" rel="noopener noreferrer" >
+                        Visit website
+                    </a>
+                </p>
+
+            </div>
+
+        </section>
+
+        <section id="single-project-content">
+
+            <div class="secondary-desc">
+                <h2 class="single-project-subtitle">
+                    <span class="main-title-text text-plane scroll-trigger">WebGL</span>
+                    <span class="main-title-text text-plane scroll-trigger">all over</span>
+                    <span class="main-title-text text-plane scroll-trigger">the place</span>
+                </h2>
+
+                <p class="text-plane scroll-trigger">
+                    I used three.js to create a background scene and added hovering 3D shapes in the foreground of the home page to stick with the art direction Cécile + Roger had come up with.
+                </p>
+
+                <p class="text-plane scroll-trigger">
+                    I also used curtains.js on the artists and installations pages pictures and played with the scroll and mouse over effects to emphasize this years thematic.
+                </p>
+
+                <p class="text-plane scroll-trigger">
+                    Last but not least the layout, animations and transitions are paying a big hommage to 80's sci-fi computer interfaces.
+                </p>
+            </div>
+
+            <div id="single-project-main-video">
+                <div class="media-wrapper">
+                    <div class="video-plane scroll-trigger">
+                        <img src="images/martin-laxenaire-mirage-festival-2019-home.jpg" width="1280" height="720" alt="Mirage Festival 2019 website homepage" data-video="videos/martin-laxenaire-mirage-festival-2019-navigation.mp4" data-video-poster="images/martin-laxenaire-mirage-festival-2019-video-cover.jpg" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="secondary-desc">
+                <h2 class="single-project-subtitle">
+                    <span class="main-title-text text-plane scroll-trigger">Same</span>
+                    <span class="main-title-text text-plane scroll-trigger">experience</span>
+                    <span class="main-title-text text-plane scroll-trigger">on mobile</span>
+                </h2>
+
+                <p class="text-plane scroll-trigger">
+                    I've worked hard to provide an equally satisfaying experience on mobile: no cutbacks with all the WebGL animations as well, even enhanced by device orientation micro-interactions.
+                </p>
+
+
+            </div>
+
+            <div class="single-project-featured-thumb">
+                <div class="media-wrapper">
+                    <div class="plane scroll-trigger">
+                        <img src="images/martin-laxenaire-mirage-festival-2019-homepage.jpg" width="1280" height="720" title="Mirage Festival 2019 Homepage screenshot" data-sampler="planeTexture" crossorigin="" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="single-project-featured-thumb">
+                <div class="media-wrapper">
+                    <div class="plane scroll-trigger">
+                        <img src="images/martin-laxenaire-mirage-festival-2019-mouseover-animation.jpg" width="1280" height="720" title="Mouseover interaction example on Mirage Festival 2019's website" data-sampler="planeTexture" crossorigin="" />
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="single-project-awards">
+
+            <div class="site-list-section">
+                <h2 class="section-title">
+                    <span class="main-title-text text-plane scroll-trigger">Awards & publications</span>
+                </h2>
+
+                <ul class="site-list more-refs-list">
+                    <li class="site-list-element">
+                        <span class="site-list-separator hr-plane scroll-trigger"></span>
+
+                        <div class="site-list-left-content">
+                            <span class="ref-title main-title-text text-plane scroll-trigger">
+                                Awwwards
+                            </span>
+                        </div>
+
+                        <div class="site-list-right-content">
+                            <a href="https://www.awwwards.com/sites/mirage-festival-7e-edition" title="Awwwards Site of the Day" class="ref-title main-title-text text-plane scroll-trigger out" target="_blank" rel="noopener">Site of the Day & Dev Awards</a>
+                        </div>
+
+                        <span class="site-list-separator hr-plane scroll-trigger"></span>
+                    </li>
+
+                    <li class="site-list-element">
+
+                        <div class="site-list-left-content">
+                            <span class="ref-title main-title-text text-plane scroll-trigger">
+                                FWA
+                            </span>
+                        </div>
+
+                        <div class="site-list-right-content">
+                            <a href="https://thefwa.com/cases/mirage-festival-7e-edition" title="FWA of the day" class="ref-details main-title-text text-plane scroll-trigger out" target="_blank" rel="noopener">FWA of the day</a>
+                        </div>
+
+                        <span class="site-list-separator hr-plane scroll-trigger"></span>
+                    </li>
+
+                    <li class="site-list-element">
+
+                        <div class="site-list-left-content">
+                            <span class="ref-title main-title-text text-plane scroll-trigger">
+                                CSS Design Awards
+                            </span>
+                        </div>
+
+                        <div class="site-list-right-content">
+                            <a href="https://www.cssdesignawards.com/sites/mirage-festival-7e-dition/34687/" title="CSS Design Awards Website of the Day" class="ref-details main-title-text text-plane scroll-trigger out" target="_blank" rel="noopener">Website of the Day</a>
+                        </div>
+
+                        <span class="site-list-separator hr-plane scroll-trigger"></span>
+                    </li>
+
+                    <li class="site-list-element">
+                        <div class="site-list-left-content">
+                            <span class="ref-title main-title-text text-plane scroll-trigger">
+                                Codrops
+                            </span>
+                        </div>
+
+                        <div class="site-list-right-content">
+                            <a href="https://tympanus.net/codrops/2019/03/05/inspirational-websites-roundup-2/" title="Codrops inspirational website roundup #2" class="ref-title main-title-text text-plane scroll-trigger out" target="_blank" rel="noopener">Inspirational website roundup #2</a>
+                        </div>
+
+                        <span class="site-list-separator hr-plane scroll-trigger"></span>
+                    </li>
+
+                    <li class="site-list-element">
+                        <div class="site-list-left-content">
+                            <span class="ref-title main-title-text text-plane scroll-trigger">
+                                Mindpsarkle Mag
+                            </span>
+                        </div>
+
+                        <div class="site-list-right-content">
+                            <a href="https://mindsparklemag.com/website/mirage-festival-7e-edition-by-martin-laxenaire/" title="Mindsparkle Mag Site of the Day" class="ref-details main-title-text text-plane scroll-trigger out" target="_blank" rel="noopener">Site of the Day</a>
+                        </div>
+
+                        <span class="site-list-separator hr-plane scroll-trigger"></span>
+                    </li>
+                </ul>
+
+            </div>
+
+        </section>
+
+        <section id="single-project-navigation">
+
+            <div class="single-project-navigation-hr hr-plane scroll-trigger"></div>
+
+            <a href="sur-le-reseau" title="Sur le réseau website's case study" id="single-project-navigation-link">
+
+                <div id="single-project-navigation-titles">
+                    <h2>
+                        <span class="main-title-text text-plane scroll-trigger">
+                            Next
+                        </span>
+                    </h2>
+
+                    <h3>
+                        <span class="main-title-text text-plane scroll-trigger" data-stagger="400">
+                            Sur le réseau
+                        </span>
+                    </h3>
+                </div>
+
+                <div id="single-project-navigation-thumb">
+                    <div class="media-wrapper">
+                        <div class="plane project-plane scroll-trigger" data-min-opacity="0.8">
+                            <img src="https://www.martin-laxenaire.fr/images/martin-laxenaire-sur-le-reseau.jpg" width="1280" height="720" alt="Sur le réseau case study cover" data-sampler="planeTexture" crossorigin="" />
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <div class="single-project-navigation-hr hr-plane scroll-trigger"></div>
+
+        </section>
+
+
+        <footer id="footer">
+
+            <div id="footer-contact-credits">
+                <div class="footer-col">
+                    <div class="contact-links-list">
+                        <a href="https://twitter.com/webdesign_ml" target="_blank" rel="noopener noreferrer" class="out main-title-text text-plane text-plane-is-link scroll-trigger" title="Martin Laxenaire twitter profile">Twitter</a><br />
+                        <a href="https://github.com/martinlaxenaire" class="out main-title-text text-plane text-plane-is-link scroll-trigger" target="_blank" rel="noopener noreferrer" title="Martin Laxenaire GitHub profile">GitHub</a><br />
+                        <a href="https://codepen.io/martinlaxenaire" target="_blank" rel="noopener noreferrer" class="out main-title-text text-plane text-plane-is-link scroll-trigger" title="Martin Laxenaire CodePen profile">CodePen</a><br />
+                        <a href="https://dribbble.com/martinlaxenaire" target="_blank" rel="noopener noreferrer" class="out main-title-text text-plane text-plane-is-link scroll-trigger" title="Martin Laxenaire Dribbble profile">Dribbble</a><br />
+                    </div>
+
+                    <div class="contact-links-list">
+                        <a href="mailto:hello@martin-laxenaire.fr" class="out main-title-text text-plane text-plane-is-link scroll-trigger" title="Send me an email">hello@martin-laxenaire.fr</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <div class="fonts-credits">
+                        <div class="text-plane text-plane-has-link scroll-trigger">
+                            Monument Extended<br />
+                            by <a href="https://pangrampangram.com/" target="_blank" rel="noopener noreferrer" class="out" title="Pangram Pangram foundry">Pangram Pangram</a>
+                        </div>
+
+                    </div>
+
+                    <div class="fonts-credits">
+                        <div class="text-plane scroll-trigger">
+                            Swiss 721 BT<br />
+                            by Max Miedinger, Bitstream 1982
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-col footer-end-col">
+                    <div class="text-plane text-plane-has-link scroll-trigger">
+                        Design<br />
+                        by <a href="https://rubxkub.com/" target="_blank" rel="noopener noreferrer" class="out" title="Rubxkub - Art Direction">Gilles Tossoukpé</a>
+                    </div>
+
+                    <button id="scroll-to-top" class="main-title-text text-plane scroll-trigger">
+                        Back to top
+                    </button>
+
+                </div>
+            </div>
+
+            <h3 id="footer-title" class="main-title">
+                <span class="main-title-text text-plane scroll-trigger">Get</span>
+                <span class="main-title-text text-plane scroll-trigger">in</span>
+                <span class="main-title-text text-plane scroll-trigger">touch</span>
+            </h3>
+
+        </footer>
+
+
+    </div>
+</main>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-29368338-1"></script>
+<script src="https://www.martin-laxenaire.fr/js/main.js" type="text/javascript"></script>
+
+</body>
+</html>

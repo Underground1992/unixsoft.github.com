@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		
+		<link href='https://fonts.googleapis.com/css?family=Ubuntu:400,700,300' rel='stylesheet' type='text/css'>
+		<link type="text/css" rel="stylesheet" href="style.css" />
+		
+		<title>The eight-thousanders</title>
+		
+		<!-- metas -->
+		<meta name="description" content="A webGL experiment that let you visualize all 14 eight-thousanders mountains in 3D." />
+		<link rel="canonical" href="index.html" />
+		
+		<!-- facebook og -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="The eight-thousanders" />
+		<meta property="og:description" content="A webGL experiment that let you visualize all 14 eight-thousanders mountains in 3D." />
+		<meta property="og:image" content="https://www.martin-laxenaire.fr/experiments/8000ers/images/the-eight-thousanders.jpg"/>
+		<meta property="og:url" content="https://www.martin-laxenaire.fr/experiments/8000ers/" />
+		
+		<!-- twitter card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:creator" content="@webdesign_ml">
+		<meta name="twitter:title" content="The eight-thousanders" />
+		<meta name="twitter:description" content="A webGL experiment that let you visualize all 14 eight-thousanders mountains in 3D." />
+		<meta name="twitter:image" content="https://www.martin-laxenaire.fr/experiments/8000ers/images/the-eight-thousanders.jpg" />	
+		
+		<!-- favicons -->		
+		<link rel="apple-touch-icon" sizes="57x57" href="images/favicons/apple-touch-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="images/favicons/apple-touch-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="images/favicons/apple-touch-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="images/favicons/apple-touch-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="images/favicons/apple-touch-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="images/favicons/apple-touch-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="images/favicons/apple-touch-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="images/favicons/apple-touch-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon-180x180.png">
+		<link rel="icon" type="image/png" href="images/favicons/favicon-32x32.png" sizes="32x32">
+		<link rel="icon" type="image/png" href="images/favicons/favicon-194x194.png" sizes="194x194">
+		<link rel="icon" type="image/png" href="images/favicons/favicon-96x96.png" sizes="96x96">
+		<link rel="icon" type="image/png" href="images/favicons/android-chrome-192x192.png" sizes="192x192">
+		<link rel="icon" type="image/png" href="images/favicons/favicon-16x16.png" sizes="16x16">
+		<link rel="manifest" href="images/favicons/manifest.json">
+		<link rel="mask-icon" href="images/favicons/safari-pinned-tab.svg" color="#212121">
+		<link rel="shortcut icon" href="images/favicons/favicon.ico">
+		<meta name="msapplication-TileColor" content="#e7e7e7">
+		<meta name="msapplication-TileImage" content="images/favicons/mstile-144x144.png">
+		<meta name="msapplication-config" content="images/favicons/browserconfig.xml">
+		<meta name="theme-color" content="#212121">
+		
+	</head>
+	<body>
+		
+		<div id="content" class="flex-container vertical-align">
+			<div id="loading">
+				<div id="loading-title">8000ers</div>
+				<div id="loading-subtitle">3D modelisations of the 14 highest mountains of the world</div>
+				<div id="loading-infos">Loading scripts</div>
+			</div>
+
+
+			<div id="mountain">
+				<nav id="mountain-menu">
+					<ul>
+						<li>
+							<span class="change-mountain flex-container vertical-align" data-title="everest" data-number="1"><span>Everest</span></span>
+						</li>
+						<li>
+							<span class="change-mountain flex-container vertical-align" data-title="k2" data-number="2"><span>K2</span></span>
+						</li>
+						<li>
+							<span class="change-mountain flex-container vertical-align" data-title="kangchenjunga" data-number="3"><span>Kangchenjunga</span></span>
+						</li>
+						<li>
+							<span class="change-mountain flex-container vertical-align" data-title="lhotse" data-number="4"><span>Lhotse</span></span>
+						</li>
+						<li>
+							<span class="change-mountain flex-container vertical-align" data-title="makalu" data-number="5"><span>Makalu</span></span>
+						</li>
+						<li>
+							<span class="change-mountain flex-container vertical-align" data-title="cho-oyu" data-number="6"><span>Cho Oyu</span></span>
+						</li>
+						<li>
+							<span class="change-mountain flex-container vertical-align" data-title="dhaulagiri" data-number="7"><span>Dhaulagiri</span></span>
+						</li>
+						<li>
+							<span class="change-mountain flex-container vertical-align" data-title="manaslu" data-number="8"><span>Manaslu</span></span>
+						</li>
+						<li>
+							<span class="change-mountain flex-container vertical-align" data-title="nanga-parbat" data-number="9"><span>Nanga Parbat</span></span>
+						</li>
+						<li>
+							<span class="change-mountain flex-container vertical-align" data-title="annapurna" data-number="10"><span>Annapurna</span></span>
+						</li>
+						<li>
+							<span class="change-mountain flex-container vertical-align" data-title="gasherbrum-1" data-number="11"><span>Gasherbrum I</span></span>
+						</li>
+						<li>
+							<span class="change-mountain flex-container vertical-align" data-title="broad-peak" data-number="12"><span>Broad Peak</span></span>
+						</li>
+						<li>
+							<span class="change-mountain flex-container vertical-align" data-title="gasherbrum-2" data-number="13"><span>Gasherbrum II</span></span>
+						</li>
+						<li>
+							<span class="change-mountain flex-container vertical-align" data-title="shishapangma" data-number="14"><span>Shishapangma</span></span>
+						</li>
+					</ul>
+				</nav>
+				
+				<section id="mountain-info">
+					<span id="toggle-mountain-infos" title="Toggle infos">
+						Toggle infos
+					</span>
+					<div id="mountain-info-wrapper" class="flex-container">
+						<div id="mountain-all-infos">
+							<div>
+								<article class="mountain-info-content everest-info">
+									<h2 class="mountain-info-title"><span class="smaller-text">1<sup>st</sup> &mdash; </span> Everest</h2>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">Data</h3>
+										<p>
+											Height : 8,848 meters<br />
+											Location : Nepal / China
+										</p>
+									</div>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">First summit</h3>
+										<p>
+											1953 by <a href="https://fr.wikipedia.org/wiki/Edmund_Hillary" class="outside-link" title="Sir Edmund Hillary on Wikipedia">Sir Edmund Hillary</a> and <a href="https://fr.wikipedia.org/wiki/Tensing_Norgay" class="outside-link" title="Tenzing Norgay on Wikipedia">Tenzing Norgay</a> via the southeast ridge route.
+										</p>
+										<div class="routes-infos">
+											<span id="toggle-everest-routes" class="toggle-routes" data-mountain="everest">Toggle ascension routes</span>
+											<ul id="everest-routes-details" class="routes-details">
+												<li class="red">South Col route</li>
+												<li class="blue">North ridge</li>
+											</ul>
+										</div>
+									</div>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">Did you know ?</h3>
+										<p>
+											Mount Everest is by far the most climbed of all eight-thousanders with more than 5000 successful ascents, but it remains a deadly mountain : there are more than 200 bodies lying in its Death Zone (above 8000 meters).
+										</p>
+										<p>
+											Scientists previously thought that due to its extremly high altitude, climbing Everest without bottled oxygen would be impossible. <a href="https://en.wikipedia.org/wiki/Reinhold_Messner" class="outside-link" title="Reinhold Messner on Wikipedia">Reinhold Messner</a> and <a href="https://en.wikipedia.org/wiki/Peter_Habeler" class="outside-link" title="Peter Habeler on Wikipedia">Peter Habeler</a> prove them wrong by accomplishing this feat for the first time in 1978.
+										</p>
+									</div>
+								</article>
+								<article class="mountain-info-content k2-info">
+									<h2 class="mountain-info-title"><span class="smaller-text">2<sup>nd</sup> &mdash; </span> K2</h2>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">Data</h3>
+										<p>
+											Height : 8,611 meters<br />
+											Location : Pakistan / China
+										</p>
+									</div>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">First summit</h3>
+										<p>
+											1954 by <a href="https://en.wikipedia.org/wiki/Lino_Lacedelli" class="outside-link" title="Lino Lacedelli on Wikipedia">Lino Lacedelli</a> and <a href="https://en.wikipedia.org/wiki/Achille_Compagnoni" class="outside-link" title="Achille Compagnoni on Wikipedia">Achille Compagnoni</a> via the Abruzzi Spur.
+										</p>
+										<div class="routes-infos">
+											<span id="toggle-k2-routes" class="toggle-routes" data-mountain="k2">Toggle ascension routes</span>
+											<ul id="k2-routes-details" class="routes-details">
+												<li class="red">Abruzzi Spur (standard route)</li>
+												<li class="blue">North ridge</li>
+											</ul>
+										</div>
+									</div>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">Did you know ?</h3>
+										<p>
+											Due to its remoteness, extreme weather and frequent avalanches on its steep slopes, the K2 is one of the hardest mountain to climb. It is the only eight-thousander that has never been summited during winter.
+										</p>
+									</div>
+								</article>
+								<article class="mountain-info-content kangchenjunga-info">
+									<h2 class="mountain-info-title"><span class="smaller-text">3<sup>rd</sup> &mdash; </span> Kangchenjunga</h2>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">Data</h3>
+										<p>
+											Height : 8,586 meters<br />
+											Location : Nepal / India
+										</p>
+									</div>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">First summit</h3>
+										<p>
+											1955 by <a href="https://en.wikipedia.org/wiki/Joe_Brown_(climber)" class="outside-link" title="Joe Brown on Wikipedia">Joe Brown</a> and <a href="https://en.wikipedia.org/wiki/George_Band_(climber)" class="outside-link" title="George Band on Wikipedia">George Band</a> via the Yalung Face (southwest).
+										</p>
+										<div class="routes-infos">
+											<span id="toggle-kangchenjunga-routes" class="toggle-routes" data-mountain="kangchenjunga">Toggle ascension routes</span>
+											<ul id="kangchenjunga-routes-details" class="routes-details">
+												<li class="red">Yalung Face (standard route)</li>
+											</ul>
+										</div>
+									</div>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">Did you know ?</h3>
+										<p>
+											Until 1852 and a new trigonometric survey, Kangchenjunga was believed to be the highest mountain in the world.
+										</p>
+										<p>
+											Its summit is considered sacred by the Chogyal people and most climbers that reach the top have to stop a few meters before the true summit to respect the tradition.
+										</p>
+									</div>
+								</article>
+								<article class="mountain-info-content lhotse-info">
+									<h2 class="mountain-info-title"><span class="smaller-text">4<sup>th</sup> &mdash; </span> Lohtse</h2>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">Data</h3>
+										<p>
+											Height : 8,516 meters<br />
+											Location : Nepal / China
+										</p>
+									</div>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">First summit</h3>
+										<p>
+											1956 by <a href="https://en.wikipedia.org/wiki/Ernst_Reiss" class="outside-link" title="Ernst Reiss on Wikipedia">Ernst Reiss</a> and <a href="https://en.wikipedia.org/wiki/Fritz_Luchsinger" class="outside-link" title="Fritz Luchsinger on Wikipedia">Fritz Luchsinger</a> via the northwest face.
+										</p>
+										<div class="routes-infos">
+											<span id="toggle-lhotse-routes" class="toggle-routes" data-mountain="lhotse">Toggle ascension routes</span>
+											<ul id="lhotse-routes-details" class="routes-details">
+												<li class="red">Northwest face (standard route)</li>
+												<li class="blue">South face</li>
+											</ul>
+										</div>
+									</div>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">Did you know ?</h3>
+										<p>
+											Lhotse is just a stonethrow from Mount Everest as they are connected by the South Col.
+										</p>
+										<p>
+											The main climbing route is almost identical to the Everest's southeast route : they split just beneath the South Col.
+										</p>
+									</div>
+								</article>
+								<article class="mountain-info-content makalu-info">
+									<h2 class="mountain-info-title"><span class="smaller-text">5<sup>th</sup> &mdash; </span> Makalu</h2>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">Data</h3>
+										<p>
+											Height : 8,485 meters<br />
+											Location : Nepal / China
+										</p>
+									</div>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">First summit</h3>
+										<p>
+											1955 by <a href="https://en.wikipedia.org/wiki/Lionel_Terray" class="outside-link" title="Lionel Terray on Wikipedia">Lionel Terray</a> and <a href="https://en.wikipedia.org/wiki/Jean_Couzy" class="outside-link" title="Jean Couzy on Wikipedia">Jean Couzy</a> via the north face to northeast ridge route.
+										</p>
+										<div class="routes-infos">
+											<span id="toggle-makalu-routes" class="toggle-routes" data-mountain="makalu">Toggle ascension routes</span>
+											<ul id="makalu-routes-details" class="routes-details">
+												<li class="red">North face to northeast ridge (standard route)</li>
+												<li class="blue">South face to southeast ridge</li>
+											</ul>
+										</div>
+									</div>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">Did you know ?</h3>
+										<p>
+											Makalu is considered one of the most technical and difficult eight-thousander to climb due to its steep pitches and its ridges that are widely open to the elements.
+										</p>
+									</div>
+								</article>
+								<article class="mountain-info-content cho-oyu-info">
+									<h2 class="mountain-info-title"><span class="smaller-text">6<sup>th</sup> &mdash; </span> Cho Oyu</h2>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">Data</h3>
+										<p>
+											Height : 8,201 meters<br />
+											Location : Nepal / China
+										</p>
+									</div>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">First summit</h3>
+										<p>
+											1954 by <a href="https://en.wikipedia.org/wiki/Herbert_Tichy" class="outside-link" title="Herbert Tichy on Wikipedia">Herbert Tichy</a>, Joseph Jöchler and Sherpa Pasang Dawa Lama via the northwest ridge.
+										</p>
+										<div class="routes-infos">
+											<span id="toggle-cho-oyu-routes" class="toggle-routes" data-mountain="cho-oyu">Toggle ascension routes</span>
+											<ul id="cho-oyu-routes-details" class="routes-details">
+												<li class="red">Northwest ridge (standard route)</li>
+											</ul>
+										</div>
+									</div>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">Did you know ?</h3>
+										<p>
+											Cho Oyu is considered to be the easiest eight-thousander to climb and therefore is the second most summited (after Mt Everest), with more than 3000 successful ascents.
+										</p>
+										<p>
+											Its true summit is located near the end of a wide plateau and many climbers, claiming a successful ascent, in fact just reach the fore summit.
+										</p>
+									</div>
+								</article>
+								<article class="mountain-info-content dhaulagiri-info">
+									<h2 class="mountain-info-title"><span class="smaller-text">7<sup>th</sup> &mdash; </span> Dhaulagiri</h2>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">Data</h3>
+										<p>
+											Height : 8,167 meters<br />
+											Location : Nepal
+										</p>
+									</div>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">First summit</h3>
+										<p>
+											1960 by <a href="https://en.wikipedia.org/wiki/Kurt_Diemberger" class="outside-link" title="Kurt Diemberger on Wikipedia">Kurt Diemberger</a>, P. Diener, E. Forrer, A. Schelbert, Nyima Dorje Sherpa and <a href="https://en.wikipedia.org/wiki/Nawang_Dorje" class="outside-link" title="Nawang Dorje on Wikipedia">Nawang Dorje</a> via the northeast ridge route.
+										</p>
+										<div class="routes-infos">
+											<span id="toggle-dhaulagiri-routes" class="toggle-routes" data-mountain="dhaulagiri">Toggle ascension routes</span>
+											<ul id="dhaulagiri-routes-details" class="routes-details">
+												<li class="red">Northeast ridge (standard route)</li>
+											</ul>
+										</div>
+									</div>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">Did you know ?</h3>
+										<p>
+											Dhaulagiri's south face, rising over 4,000m, is still unclimbed until now. It remains one of the greatest challenge in himalayaism.
+										</p>
+										<p>
+											It was first reconnoitered in 1950 by the French expedition led by Maurice Herzog. They finally switched to Annapurna (which they succesfully summited that year) because they did not saw any feasible route.
+										</p>
+									</div>
+								</article>
+								<article class="mountain-info-content manaslu-info">
+									<h2 class="mountain-info-title"><span class="smaller-text">8<sup>th</sup> &mdash; </span> Manaslu</h2>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">Data</h3>
+										<p>
+											Height : 8,163 meters<br />
+											Location : Nepal
+										</p>
+									</div>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">First summit</h3>
+										<p>
+											1956 by Toshio Imanishi and Gyalzen Norbu via the northeast face.
+										</p>
+										<div class="routes-infos">
+											<span id="toggle-manaslu-routes" class="toggle-routes" data-mountain="manaslu">Toggle ascension routes</span>
+											<ul id="manaslu-routes-details" class="routes-details">
+												<li class="red">Northeast face (standard route)</li>
+											</ul>
+										</div>
+									</div>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">Did you know ?</h3>
+										<p>
+											Although Manaslu remains one of the most dangerous eight-thousanders, it has already been climbed by 9 different routes.
+										</p>
+									</div>
+								</article>
+								<article class="mountain-info-content nanga-parbat-info">
+									<h2 class="mountain-info-title"><span class="smaller-text">9<sup>th</sup> &mdash; </span> Nanga Parbat</h2>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">Data</h3>
+										<p>
+											Height : 8,126 meters<br />
+											Location : Pakistan
+										</p>
+									</div>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">First summit</h3>
+										<p>
+											1953 by <a href="https://en.wikipedia.org/wiki/Hermann_Buhl" class="outside-link">Hermann Buhl</a> via the Rakhiot Flank (East Ridge).
+										</p>
+										<div class="routes-infos">
+											<span id="toggle-nanga-parbat-routes" class="toggle-routes" data-mountain="nanga-parbat">Toggle ascension routes</span>
+											<ul id="nanga-parbat-routes-details" class="routes-details">
+												<li class="red">Diamir Face (standard route)</li>
+												<li class="blue">Rupal Face</li>
+											</ul>
+										</div>
+									</div>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">Did you know ?</h3>
+										<p>
+											The Rupal Face (south face) of the Nanga Parbat is the highest mountain face in the world, rising 4,600 meters from its base to the summit.
+										</p>
+										<p>
+											It is also the only eight-thousanders for which the first ascent was made without supplemental oxygen and alone.
+										</p>
+									</div>
+								</article>
+								<article class="mountain-info-content annapurna-info">
+									<h2 class="mountain-info-title"><span class="smaller-text">10<sup>th</sup> &mdash; </span> Annapurna I</h2>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">Data</h3>
+										<p>
+											Height : 8,091 meters<br />
+											Location : Nepal
+										</p>
+									</div>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">First summit</h3>
+										<p>
+											1950 by <a href="https://en.wikipedia.org/wiki/Maurice_Herzog" class="outside-link" title="Maurice Herzog on Wikipedia">Maurice Herzog</a> and <a href="https://en.wikipedia.org/wiki/Louis_Lachenal" class="outside-link" title="Louis Lachenal on Wikipedia">Louis Lachenal</a> via the north face.
+										</p>
+										<div class="routes-infos">
+											<span id="toggle-annapurna-routes" class="toggle-routes" data-mountain="annapurna">Toggle ascension routes</span>
+											<ul id="annapurna-routes-details" class="routes-details">
+												<li class="red">North face</li>
+											</ul>
+										</div>
+									</div>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">Did you know ?</h3>
+										<p>
+											Althought Annapurna I had been the first eight-thousander ever summited (and the only one on the first try), it remains the less summited (less than 200) and the most dangerous mountain on earth.
+										</p>
+										<p>
+											Its fatality rate is 32%, which means that for every three climbers that make it safely up and down Annapurna I, one dies trying.
+										</p>
+									</div>
+								</article>
+								<article class="mountain-info-content gasherbrum-1-info">
+									<h2 class="mountain-info-title"><span class="smaller-text">11<sup>th</sup> &mdash; </span> Gasherbrum I</h2>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">Data</h3>
+										<p>
+											Height : 8,080 meters<br />
+											Location : Pakistan / China
+										</p>
+									</div>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">First summit</h3>
+										<p>
+											1958 by <a href="https://en.wikipedia.org/wiki/Pete_Schoening" class="outside-link" title="Pete Schoening on Wikipedia">Pete Schoening</a> and Andrew Kauffman via the north face.
+										</p>
+										<div class="routes-infos">
+											<span id="toggle-gasherbrum-1-routes" class="toggle-routes" data-mountain="gasherbrum-1">Toggle ascension routes</span>
+											<ul id="gasherbrum-1-routes-details" class="routes-details">
+												<li class="red">North face</li>
+											</ul>
+										</div>
+									</div>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">Did you know ?</h3>
+										<p>
+											Gasherbrum I is also known as Hidden Peak (and formerly K5) due to its extreme remoteness. It is located in the Karakoram range near the K2, the Broad Peak and, of course, the Gasherbum II.
+										</p>
+									</div>
+								</article>
+								<article class="mountain-info-content broad-peak-info">
+									<h2 class="mountain-info-title"><span class="smaller-text">12<sup>th</sup> &mdash; </span> Broad Peak</h2>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">Data</h3>
+										<p>
+											Height : 8,051 meters<br />
+											Location : Pakistan / China
+										</p>
+									</div>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">First summit</h3>
+										<p>
+											1958 by <a href="https://en.wikipedia.org/wiki/Fritz_Wintersteller" class="outside-link" title="Fritz Wintersteller on Wikipedia">Fritz Wintersteller</a>, <a href="https://en.wikipedia.org/wiki/Marcus_Schmuck" class="outside-link" title="Marcus Schmuck on Wikipedia">Marcus Schmuck</a>, <a href="https://en.wikipedia.org/wiki/Kurt_Diemberger" class="outside-link" title="Kurt Diemberger on Wikipedia">Kurt Diemberger</a> and <a href="https://en.wikipedia.org/wiki/Hermann_Buhl" class="outside-link" title="Hermann Buhl on Wikipedia">Hermann Buhl</a>.
+										</p>
+										<div class="routes-infos">
+											<span id="toggle-broad-peak-routes" class="toggle-routes" data-mountain="broad-peak">Toggle ascension routes</span>
+											<ul id="broad-peak-routes-details" class="routes-details">
+												<li class="red">West face</li>
+											</ul>
+										</div>
+									</div>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">Did you know ?</h3>
+										<p>
+											Bord Peak is located just a few kilometers south east of the K2. They are only separated by the Baltoro Glacier.
+										</p>
+										<p>
+											3 of its several summits are higher thant 8,000 meters : the main summit, Rocky Summit (8,028m) and Broad Peak Central (8,011m).
+										</p>
+									</div>
+								</article>
+								<article class="mountain-info-content gasherbrum-2-info">
+									<h2 class="mountain-info-title"><span class="smaller-text">13<sup>th</sup> &mdash; </span> Gasherbrum II</h2>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">Data</h3>
+										<p>
+											Height : 8,035 meters<br />
+											Location : Pakistan / China
+										</p>
+									</div>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">First summit</h3>
+										<p>
+											1956 by <a href="https://en.wikipedia.org/wiki/Fritz_Moravec" class="outside-link" title="Fritz Moravec on Wikipedia">Fritz Moravec</a>, Josef Larch and Hans Willenpart via the southwest ridge.
+										</p>
+										<div class="routes-infos">
+											<span id="toggle-gasherbrum-2-routes" class="toggle-routes" data-mountain="gasherbrum-2">Toggle ascension routes</span>
+											<ul id="gasherbrum-2-routes-details" class="routes-details">
+												<li class="red">Southwest ridge</li>
+											</ul>
+										</div>
+									</div>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">Did you know ?</h3>
+										<p>
+											Gasherbrum II is located just next to its cousin, Gasherbrum I. Their climbing routes share the same Base Camp and Camp I.
+										</p>
+										<p>
+											In 1984, <a href="https://en.wikipedia.org/wiki/Reinhold_Messner" class="outside-link" title="Reinhold Messner on Wikipedia">Reinhold Messner</a> and <a href="https://en.wikipedia.org/wiki/Hans_Kammerlander" class="outside-link" title="Hans Kammerlander on Wikipedia">Hans Kammerlander</a> were the first to summit 2 peaks higher than 8000 meters (Gasherbrum II and I) without returning to Base Camp.
+										</p>
+									</div>
+								</article>
+								<article class="mountain-info-content shishapangma-info">
+									<h2 class="mountain-info-title"><span class="smaller-text">14<sup>th</sup> &mdash; </span> Shishapangma</h2>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">Data</h3>
+										<p>
+											Height : 8,027 meters<br />
+											Location : China
+										</p>
+									</div>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">First summit</h3>
+										<p>
+											1964 by <a href="https://en.wikipedia.org/wiki/Hsu_Ching" class="outside-link" title="Hsu Ching on Wikipedia">Hsu Ching</a>, <a href="https://en.wikipedia.org/wiki/Wang_Fuzhou" class="outside-link" title="Wang Fuzhou on Wikipedia">Wang Fuzhou</a>, Chang Chun-yen, Chen San, Cheng Tiel-liang, Wu Tsung-yue, Sodnam Doji, Migmar Trashi, Doji and Yonten via the northern route.
+										</p>
+										<div class="routes-infos">
+											<span id="toggle-shishapangma-routes" class="toggle-routes" data-mountain="shishapangma">Toggle ascension routes</span>
+											<ul id="shishapangma-routes-details" class="routes-details">
+												<li class="red">Northen route</li>
+											</ul>
+										</div>
+									</div>
+									<div class="mountain-info-section">
+										<h3 class="mountain-info-subtitle">Did you know ?</h3>
+										<p>
+											The smallest of all eight-thousanders was also the last to be summited, due to restrictions on foreign travelers in China.
+										</p>
+										<p>
+											Is is now considered as one of the "easiest" eight-thousander to climb, with a vehicle access possible up to base camp at 5,000m. To reach the true summit, climbers have to walk on a knife-edge ridge. A lot of them therefore stop at the fore summit.
+										</p>
+									</div>
+								</article>
+								
+								<div id="help-controls-mobile">
+									<p><a href="https://twitter.com/share?url=http%3A%2F%2Fwww.martin-laxenaire.fr%2Fexperiments%2F8000ers%2F&text=8000ers&via=webdesign_ml" class="outside-link twitter-share-link">Tweet that mountain</a><br />
+									<a class="outside-link facebook-share-link" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fwww.martin-laxenaire.fr%2Fexperiments%2F8000ers%2F&t=8000ers">Share it on Facebook</a></p>
+									<p>2016 - <a href="../../index.html" class="outside-link" title="WebGL experiment by Martin Laxenaire">Martin Laxenaire</a></p>
+								</div>
+								
+								
+							</div>
+						</div>
+						<div id="help-controls">
+							<p><a href="https://twitter.com/share?url=http%3A%2F%2Fwww.martin-laxenaire.fr%2Fexperiments%2F8000ers%2F&text=8000ers&via=webdesign_ml" class="outside-link twitter-share-link">Tweet that mountain</a><br />
+							<a class="outside-link facebook-share-link" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fwww.martin-laxenaire.fr%2Fexperiments%2F8000ers%2F&t=8000ers">Share it on Facebook</a></p>
+							<p><strong>Controls</strong><br />
+							Click & drag to rotate the view<br />
+							Use your mouse wheel to zoom</p>
+							<!--<p><a href="#/about">About</a></p>-->
+							<p>2016 - <a href="../../index.html" class="outside-link" title="WebGL experiment by Martin Laxenaire">Martin Laxenaire</a></p>
+						</div>
+					</div>
+				</section>
+				
+				<div id="container">
+				</div>
+				
+				<!--<div id="about">
+					<span id="close-about">Close</span>
+					<div id="about-content">
+						<div class="wrapper">
+							<h2>About</h2>
+							<p>
+								This experiment uses <a href="http://threejs.org/" class="out" title="">Three.js</a> to render WebGL, actual heightmaps and satellite pictures as textures.
+							</p>
+							<h2>Credits</h2>
+							<p>
+								Heightmaps 3D rendering are based on <a href="http://oos.moxiecode.com/js_webgl/terrain/index.html" class="out">this example</a>.<br />
+								All the heightmaps were generated using <a href="http://terrain.party/" class="out" title="Real world height maps">terrain.party</a>.<br />
+								Satellite pictures are taken from NASA's <a href="http://www.earthobservatory.nasa.gov/Features/8000MeterPeaks/" class="out" title="">Earth observatory's</a> and <a href="http://visibleearth.nasa.gov/" class="out" title="">Visible Earth</a> websites.
+							</p>
+							<p>
+								All climbing routes were done by hand, based on the informations I found online. It is pretty much likely that some of them might be misplaced or just wrong. Please, <a href="mailto:martin.laxenaire@gmail.com">let me know</a> if you found any mistake.
+							</p>
+							<p>
+								Made by <a href="http://www.martin-laxenaire.fr/" class="out" title="">Martin Laxenaire</a>, 2016.<br />
+								Thank you for visiting.
+							</p>
+						</div>
+					</div>
+				</div>-->
+				
+			</div>
+		</div>
+
+		<script src="js/libs/three.min.js" type="text/javascript"></script>		
+		<script src="js/libs/OrbitControls.js" type="text/javascript"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" type="text/javascript"></script>
+		<script src="js/libs/iscroll.js" type="text/javascript"></script>
+		<script type="text/javascript">
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-29368338-1', 'auto');
+		  ga('send', 'pageview');
+
+		</script>
+		
+		<script src="js/textured.heightmaps.js" type="text/javascript"></script>
+		<script src="js/jquery.navigation.js" type="text/javascript"></script>
+
+	</body>
+</html>
